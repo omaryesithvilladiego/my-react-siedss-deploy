@@ -33,6 +33,7 @@ import {Switch, Route,  BrowserRouter} from "react-router-dom"
 import { Component } from 'react';
 import EstadosPonencia from '../formularios/ponenciaForm/EstadosPonencia';
 import Cookies from 'universal-cookie';
+import LimpiarDatos from '../../miniComponents/LimpiarDatos';
 
 
 
@@ -97,16 +98,7 @@ export default function PrimarySearchAppBar() {
 
   let {path, url }= useRouteMatch()
 
-  const limpiarDatos = () => {
-    cookies.remove('_m')
-    cookies.remove('_a')
-     // Vaciar el localStorage
-  localStorage.clear()
 
-  // Vaciar la caché
-  window.location.reload()
-
-  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -217,7 +209,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}> <Link to={`${path}/mi-perfil`}>Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={limpiarDatos}>Cerrar sesión</MenuItem>
+      <MenuItem onClick={LimpiarDatos}>Cerrar sesión</MenuItem>
     </Menu>
   );
 

@@ -7,19 +7,22 @@ import { buttonClasses } from '@mui/base/Button';
 import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import Paper from '@mui/material/Paper';
 import styles from './admin.module.css'
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import EstudiantesPageAdmin from './pagesAdmin/Estudiantes';
 import Actividades from './pagesAdmin/Actividades';
 import EstudiantesAsistencia from './pagesAdmin/Asistencia';
+import LimpiarDatos from "../../miniComponents/LimpiarDatos"
 
 export default function UnstyledTabsIntroduction() {
   return (
     <div >
-         <Paper style={{width:'100vw', height:'4rem',display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize:'.9rem', fontWeight:'bold', backgroundColor:'black', color:'white'}} >
+         <Paper style={{width:'100vw', height:'4rem',display:'flex',  justifyContent:'space-around', alignItems:'center', fontSize:'.9rem', fontWeight:'bold', backgroundColor:'black', color:'white'}} >
 
-        <Typography variant='h4'>
-        Panel administrativo
+        <Typography variant='h6'>
+        Bienvenida Profesora Edna Regino
         </Typography>
+
+        <Button type='outline' onClick={LimpiarDatos}>Cerrar Sesión</Button>
            
 
 
