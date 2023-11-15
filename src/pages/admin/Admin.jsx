@@ -18,7 +18,7 @@ export default function UnstyledTabsIntroduction() {
     <div >
          <Paper style={{width:'100vw', height:'4rem',display:'flex',  justifyContent:'space-around', alignItems:'center', fontSize:'.9rem', fontWeight:'bold', backgroundColor:'black', color:'white'}} >
 
-        <Typography variant='h6'>
+        <Typography style={{padding:'.5rem'}} variant='h6'>
         Bienvenida Profesora Edna Regino
         </Typography>
 
