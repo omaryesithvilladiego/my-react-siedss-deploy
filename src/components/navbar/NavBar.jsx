@@ -99,6 +99,7 @@ export default function PrimarySearchAppBar() {
 
   const limpiarDatos = () => {
     cookies.remove('_m')
+    cookies.remove('_a')
      // Vaciar el localStorage
   localStorage.clear()
 

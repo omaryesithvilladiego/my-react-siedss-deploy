@@ -30,27 +30,14 @@ function PonenciaFormulario() {
 
   //Proyecto Data
   const [certificadoResultadoPremioUrl, setCertificadoResultadoPremioUrl] = useState(null)
+  const [actaTrabajoGradoUrl, setActaTrabajoGradoUrl] = useState(null)
+  const [actaInvestigacionUrl, setActaInvestigacionUrl] = useState(null)
 
 
-
-
-  const [nombrePonencia, setNombrePonencia] = useState('');
-  const [modalidad, setModalidad] = useState('');
-  const [pais, setPais] = useState('');
-  const [ciudad, setCiudad] = useState('');
-  const [archivoPdf1, setArchivoPdf1] = useState(null);
-  const [imagen, setImagen] = useState(null);
-  const [archivoPdf2, setArchivoPdf2] = useState(null);
-  const [fechaPonencia, setFechaPonencia] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFile2, setSelectedFile2] = useState(null);
-  const [selectedFile3, setSelectedFile3] = useState(null);
-  const [selectedFile4, setSelectedFile4] = useState(null);
-  const [idUsuarioPonencia, setIdUsuarioPonencia] = useState(12345698575545525);
-  const [loaderPonencia, setLoaderPonencia] = useState(false) // Defino las variables para controlar el cargar la ponencia
   const [exito, setExito] = useState(null)
 
-  let {path, url} = useRouteMatch()
+  const [loaderProyecto, setLoaderProyecto] = useState(false)
+
 
 
   // Agregar estados de error
@@ -89,82 +76,22 @@ function PonenciaFormulario() {
     setCertificadoResultadoPremioUrl(file);
   };
 
+  const handleFile2Change = (e) => {
+    const file = e.target.files[0]
+    setActaTrabajoGradoUrl(file)
+  }
+
+  const handleFile3Change = (e) => {
+    const file = e.target.files[0]
+    setActaInvestigacionUrl(file)
+  }
+
+
  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Verificar campos vacíos y establecer errores si es necesario
-    if (!nombrePonencia) {
-      setNombreError('El nombre de la ponencia es obligatorio');
-      setNombreErrorBoolean(false);
-    } else {
-      setNombreErrorBoolean(true);
-      setNombreError('');
-    }
-
-    if (!modalidad) {
-      setModalidadError('La modalidad de la ponencia es obligatoria');
-      setModalidadErrorBoolean(false);
-    } else {
-      setModalidadError('');
-      setModalidadErrorBoolean(true);
-    }
-
-    if (!pais) {
-      setPaisError('El país de la ponencia es obligatorio');
-      setPaisErrorBoolean(false);
-    } else {
-      setPaisErrorBoolean(true);
-      setPaisError('');
-    }
-
-    if (!ciudad) {
-      setCiudadError('La ciudad de la ponencia es obligatoria');
-      setCiudadErrorBoolean(false);
-    } else {
-      setCiudadErrorBoolean(true);
-      setCiudadError('');
-    }
-
-    if (!fechaPonencia) {
-      setFechaErrorBoolean(false);
-      setFechaError('La fecha de la ponencia es obligatoria');
-    } else {
-      setFechaError('');
-      setFechaErrorBoolean(true);
-    }
-
-    if (!selectedFile) {
-      setFile1Error('El certificado de la ponencia es obligatorio');
-      setFile1ErrorBoolean(false);
-    } else {
-      setFile1ErrorBoolean(true);
-      setFile1Error('');
-    }
-
-    if (!selectedFile2) {
-      setFile2Error('El certificado de la ponencia es obligatorio');
-      setFile2ErrorBoolean(false);
-    } else {
-      setFile2ErrorBoolean(true);
-      setFile2Error('');
-    }
-
-    if (!selectedFile3) {
-      setFile3Error('La presentación del evento es obligatoria');
-      setFile3ErrorBoolean(false);
-    } else {
-      setFile3ErrorBoolean(true);
-      setFile3Error('');
-    }
-
-    if (!selectedFile4) {
-      setFile4Error('La imagen memorias es obligatoria');
-      setFile4ErrorBoolean(false);
-    } else {
-      setFile4ErrorBoolean(true);
-      setFile4Error('');
-    }
+  
 
     // // Verificar si hay errores en el formulario
     // if (!nombrePonencia || !modalidad || !pais || !ciudad || !fechaPonencia) {
@@ -172,30 +99,27 @@ function PonenciaFormulario() {
     //   return; // No envíes la solicitud si hay errores
     // }
 
-    const formData = new FormData()
+    let formData = new FormData()
+    formData.append('certificadoResultadoPremioUrl', certificadoResultadoPremioUrl)
+    formData.append('actaTrabajoGradoUrl', actaTrabajoGradoUrl)
+    formData.append('actaInvestigacionUrl', actaInvestigacionUrl)
+
+
 
     console.log(certificadoResultadoPremioUrl)
    
-    formData.append('files', [certificadoResultadoPremioUrl])
     
-    setLoaderPonencia(true)
     
-    requestWithTokenHeader.post("proyecto/create-proyecto", formData)
-      .then((response) => {
+    setLoaderProyecto(true)
+    
+    requestWithTokenHeader.post(`proyecto/create-proyecto`, formData)
+.then((response) => {
         console.log(response)
         setExito(response.data.exito)
-        setLoaderPonencia(false)
+        setLoaderProyecto(false)
 
         // Limpiar los campos después del envío exitoso
-        setNombrePonencia('');
-        setModalidad('');
-        setPais('');
-        setCiudad('');
-        setFechaPonencia(null);
-        setSelectedFile(null);
-        setSelectedFile2(null);
-        setSelectedFile3(null);
-        setSelectedFile4(null);
+      
 
         setTimeout(() => {
           setExito(false)
@@ -213,7 +137,7 @@ function PonenciaFormulario() {
 
 
       {exito && <Alert style={{ position: 'absolute' }} severity='success'>El poyecto se guardó correctamente</Alert>}
-      {loaderPonencia &&
+      {loaderProyecto &&
         <Box sx={{ display: 'flex', position: 'absolute' }}>
           <CircularProgress />
         </Box>
@@ -237,6 +161,40 @@ function PonenciaFormulario() {
           Subir Certificado
         </label>
         {certificadoResultadoPremioUrl && <p>Archivo seleccionado: {certificadoResultadoPremioUrl.name}</p>}
+      </div>
+
+      <div className="content-input-certificado">
+        <input
+          type="file"
+          onChange={handleFile2Change}
+          id="fileInput2"
+          style={{ display: 'none' }}
+        />
+        <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} htmlFor="fileInput2">
+          <IconButton component="span">
+            <CloudUploadIcon />
+          </IconButton>
+          Subir Acta
+        </label>
+        {actaTrabajoGradoUrl && <p>Archivo seleccionado: {actaTrabajoGradoUrl.name}</p>}
+      </div>
+
+
+
+      <div className="content-input-certificado">
+        <input
+          type="file"
+          onChange={handleFile3Change}
+          id="fileInput3"
+          style={{ display: 'none' }}
+        />
+        <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} htmlFor="fileInput3">
+          <IconButton component="span">
+            <CloudUploadIcon />
+          </IconButton>
+          Subir Acta
+        </label>
+        {actaInvestigacionUrl && <p>Archivo seleccionado: {actaInvestigacionUrl.name}</p>}
       </div>
 
 

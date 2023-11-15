@@ -12,8 +12,15 @@ export function calculaExtreaccionSesion() {
 }
 
 export function getSession() {
-    return (cookies.get("_m")) === undefined ? false : cookies.get("_m") ;
+    return (cookies.get("_m")) === undefined ? cookies.get("_a") : cookies.get("_m");
 }
+
+export const cockieAdmin = cookies.get("_a")
+
+export function getSessionAdmin() {
+    return (cookies.get("_a")) === undefined ? false : cookies.get("_a");
+}
+
 
 
 

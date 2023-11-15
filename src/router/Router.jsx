@@ -6,6 +6,7 @@ import LoginPrivado from "../authentication/auth/loginPrivado";
 import Admin from "../pages/admin/Admin";
 import  {UserProvider} from '../components/Provider/userProvider'
 import Curriculum from "../pages/curriculum/Curriculum";
+import AdminAuth from "../authentication/auth/adminAuth";
 
 
 function Router() {
@@ -24,7 +25,7 @@ function Router() {
 <LoginPrivado path="/login" component={RegistroFormulario} />
 
 
-<Route  path="/admin" component={Admin} /> 
+<AdminAuth  path="/admin" component={Admin} /> 
 
         
     </Switch>

@@ -151,27 +151,41 @@ function RegistroFormulario() {
 
   const login = (e) => {
     e.preventDefault()
+
+
+   
+
     axios.post(`${APIHOST}usuarios/usuario-login`,
       {
         nombreUsuario: userEstudiante,
         contraseñaUsuario: passEstudiante
       }).then((response) => {
-        
-        
-        console.log(response.data.token)
         if ((response.data.token) == null) {
           setPassIncorrecta(true)
           setTimeout(() => {
             setPassIncorrecta(false)
           }, 2000);
         } else {
-          localStorage.setItem('user', response.data.data.idUsuarioRegistro)
-          cookies.set('_m', response.data.token, {
-            path: '/',
-            expires: calculaExtreaccionSesion(),
-            secure: true,
-          })
-          location.reload();
+
+          if(response.data.type === 'root') {
+            
+            cookies.set('_a', response.data.token, {
+              path: '/',
+              expires: calculaExtreaccionSesion(),
+              secure: true,
+            })
+            location.reload();
+          } else  {
+            localStorage.setItem('user', response.data.data.idUsuarioRegistro)
+            cookies.set('_m', response.data.token, {
+              path: '/',
+              expires: calculaExtreaccionSesion(),
+              secure: true,
+            })
+            location.reload();
+          }
+
+       
         }
 
       })
@@ -278,7 +292,6 @@ function RegistroFormulario() {
       var regex = /^[a-zA-Z0-9._%+-]+@campusucc\.edu\.co$/;
       var valido = regex.test(correoInstitucionalEstudiante)
       console.log('Correo: ' + correoInstitucionalEstudiante)
-      console.log(valido)
       if (valido) {
         setCorreoInstitucionalErrorBoolean(false);
         setCorreoInstitucionalError('')
