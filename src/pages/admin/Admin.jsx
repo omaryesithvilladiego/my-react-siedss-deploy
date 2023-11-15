@@ -27,11 +27,11 @@ export default function UnstyledTabsIntroduction() {
 
 
 
-</Paper>
+</Paper >
 
-    <Tabs className={styles.containerPages} defaultValue={0}>
+    <Tabs  className={styles.containerPages} defaultValue={0}>
             
-      <TabsList>
+      <TabsList >
         <Tab value={0}>Inicio</Tab>
         <Tab value={1}>Estudiantes</Tab>
         <Tab value={2}>Actividades</Tab>
@@ -116,7 +116,6 @@ const TabPanel = styled(BaseTabPanel)(
   width: 90vColumnGroupingTablew;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
-  padding: 20px 12px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   opacity: 0.6;

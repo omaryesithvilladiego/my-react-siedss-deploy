@@ -10,7 +10,7 @@ import PonenciasAdmin from './PonenciasAdmin';
 function Actividades() {
     return ( <div> <Tabs  defaultValue={1}>
             
-        <TabsList>
+        <TabsList style={{padding:'none', backgroundColor:'red'}}   >
           <Tab value={0}>Ponencias</Tab>
           <Tab value={1}>Cursos</Tab>
           <Tab value={2}>Proyectos</Tab>
