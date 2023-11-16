@@ -15,8 +15,10 @@ function Router() {
     <BrowserRouter>
 
     <Switch>
-
-    <PrivateRouter  path="/inicio" component={Inicio} />
+<UserProvider>
+<PrivateRouter  path="/inicio" component={Inicio} />
+</UserProvider>
+   
     <PrivateRouter  path="/curriculum" component={Curriculum} />
 
        
