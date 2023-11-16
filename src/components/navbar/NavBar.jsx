@@ -398,8 +398,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-         {/* <embed src="https://backend-siedss-deploy.onrender.com/public/ponencias/imagenMemoriasUrlPonencia-1699752604834-714624177.jpeg" type="image/jpeg" width="35px" height="35px" /> */}
-         
+         <embed src="https://backend-siedss-deploy.onrender.com/public/ponencias/imagenMemoriasUrlPonencia-1699752604834-714624177.jpeg" type="image/jpeg" width="35px" height="35px" />
 
         </IconButton>
        <p>Perfil</p>

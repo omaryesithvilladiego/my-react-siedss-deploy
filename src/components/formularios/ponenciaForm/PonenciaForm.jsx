@@ -20,8 +20,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import {Link, useRouteMatch} from "react-router-dom"
 import {requestWithToken} from '../../../authentication/helper/helper'
-import {useUserContext} from "../../Provider/userProvider"
-
 
 import { APIHOST } from "../../../app2.json"
 
@@ -43,8 +41,6 @@ function PonenciaFormulario() {
   const [idUsuarioPonencia, setIdUsuarioPonencia] = useState(12345698575545525);
   const [loaderPonencia, setLoaderPonencia] = useState(false) // Defino las variables para controlar el cargar la ponencia
   const [exito, setExito] = useState(null)
-  const userCurrent = useUserContext()
-  
 
   let {path, url} = useRouteMatch()
 
@@ -182,7 +178,7 @@ function PonenciaFormulario() {
     }
 
     const formData = new FormData()
-    
+
     formData.append('nombreEventoPonencia', nombrePonencia)
     formData.append("modalidadEventoPonencia", modalidad)
     formData.append("paisEventoPonencia", pais)
@@ -191,7 +187,7 @@ function PonenciaFormulario() {
     formData.append('posterEventoUrlPonencia', selectedFile2)
     formData.append('presentacionEventoUrlPonencia', selectedFile3)
     formData.append('imagenMemoriasUrlPonencia', selectedFile4)
-    formData.append('idEstudiantePonencia', userCurrent)
+    formData.append('idEstudiantePonencia', idUsuarioPonencia)
     formData.append('fechaPonencia', fechaPonencia)
     setLoaderPonencia(true)
     
