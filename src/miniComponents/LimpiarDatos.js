@@ -12,3 +12,5 @@ const LimpiarDatos = () => {
 }
 
 export default LimpiarDatos;
+
+

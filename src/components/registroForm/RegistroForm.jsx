@@ -385,7 +385,7 @@ function RegistroFormulario() {
       justifyContent: 'center',
       alignContent: 'center'
     }} >
-              {passIncorrecta && <Alert  style={{ position: 'absolute', width:'15rem', top:'5rem' }} severity='error'>El usuario o la contrasena son incorrectos</Alert>}
+              {passIncorrecta && <Alert  style={{ position: 'absolute', width:'15rem', top:'5rem',zIndex:1000 }} severity='error'>El usuario o la contrasena son incorrectos</Alert>}
 
 
 

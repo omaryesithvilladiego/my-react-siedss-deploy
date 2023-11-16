@@ -40,33 +40,7 @@ function PonenciaFormulario() {
 
 
 
-  // Agregar estados de error
-  const [nombreError, setNombreError] = useState('');
-  const [nombreErrorBoolean, setNombreErrorBoolean] = useState(true);
-
-  const [modalidadError, setModalidadError] = useState('');
-  const [modalidadErrorBoolean, setModalidadErrorBoolean] = useState(true);
-
-  const [paisError, setPaisError] = useState('');
-  const [paisErrorBoolean, setPaisErrorBoolean] = useState(true);
-
-  const [ciudadError, setCiudadError] = useState('');
-  const [ciudadErrorBoolean, setCiudadErrorBoolean] = useState(true);
-
-  const [fechaError, setFechaError] = useState('');
-  const [fechaErrorBoolean, setFechaErrorBoolean] = useState(true);
-
-  const [file1Error, setFile1Error] = useState('');
-  const [file1ErrorBoolean, setFile1ErrorBoolean] = useState(true);
-
-  const [file2Error, setFile2Error] = useState('');
-  const [file2ErrorBoolean, setFile2ErrorBoolean] = useState(true);
-
-  const [file3Error, setFile3Error] = useState('');
-  const [file3ErrorBoolean, setFile3ErrorBoolean] = useState(true);
-
-  const [file4Error, setFile4Error] = useState('');
-  const [file4ErrorBoolean, setFile4ErrorBoolean] = useState(true);
+  
 
   // Estado para verificar si el formulario es válido
   const [formularioValido, setFormularioValido] = useState(true);
@@ -160,6 +134,8 @@ function PonenciaFormulario() {
           </IconButton>
           Subir Certificado
         </label>
+
+        
         {certificadoResultadoPremioUrl && <p>Archivo seleccionado: {certificadoResultadoPremioUrl.name}</p>}
       </div>
 

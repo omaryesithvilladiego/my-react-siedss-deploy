@@ -16,7 +16,10 @@ function Router() {
 
     <Switch>
 
+      
+
     <PrivateRouter  path="/inicio" component={Inicio} />
+
     <PrivateRouter  path="/curriculum" component={Curriculum} />
 
        
@@ -32,7 +35,9 @@ function Router() {
 
 
 
-    </BrowserRouter> );
+    </BrowserRouter>
+    
+    );
 }
 
 export default Router;
