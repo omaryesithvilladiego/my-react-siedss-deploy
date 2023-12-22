@@ -7,6 +7,14 @@
     border-color: #007bff;
   }
 
+  .appBar {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/pexels-fox-1595385.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+  }
+
 .contentLinks a {
     color: white;
     font-size: 1.135rem;

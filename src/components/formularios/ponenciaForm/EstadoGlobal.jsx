@@ -11,20 +11,26 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Paper } from '@mui/material';
 
 
-function EstadosPonencia({path}) {
-    const [data, setData] = useState([])
+function EstadoGlobal({path, tipo}) {
+    const [data, setData] = useState([{}])
 
 
 
 
     const getDatos = () => {
-        requestWithTokenGet.get(`ponencia/obtener-ponencias`)
+       
+        const tipoLower = tipo.toLowerCase()
+        requestWithTokenGet.get(`${tipoLower}/obtener-${tipoLower}`)
         .then((response) => {
           
           
          const datos = response.data
-         setData(datos)
-         console.log(data)
+         console.log(response.data)
+         if(response.data.length > 0) {
+            setData(datos)
+            console.log(data)
+         }
+        
         })
         .catch((err) => {
           console.log(err);
@@ -33,7 +39,8 @@ function EstadosPonencia({path}) {
       }
 
       useEffect(() => {
-        getDatos()
+        console.log(tipo)
+         getDatos()
       }, []);
     
 
@@ -42,19 +49,6 @@ function EstadosPonencia({path}) {
     
   
 
-         data.forEach((object) => {
-             
-             if(object.estadoPonencia == 'Aprobada') {
-                 
-             } else if(object.estadoPonencia == 'Denegada') {
-                
-             } else if(object.estadoPonencia == 'Pendiente') {
-                 
-             }
-
-         })
-
-    
    
          
 
@@ -67,9 +61,9 @@ function EstadosPonencia({path}) {
 
         <Stack sx={{ width: '100%' }} spacing={2}>
       
-      <Alert severity="info" icon={<InterpreterModeIcon/>}> <p><strong>Usted Tiene {data.length} Ponencia </strong>  </p></Alert>
+      <Alert severity="info" icon={<InterpreterModeIcon/>}> <p><strong>Usted Tiene {data.length} {tipo} </strong>  </p></Alert>
      
-      <Alert severity="info" > <p> <strong>Las ponencias que no esten aprobadas no aparecen en su curriculum</strong>  </p></Alert>
+      <Alert severity="info" > <p> <strong>{tipo} en estado pendiente no aparece en su curriculum</strong>  </p></Alert>
      
     </Stack>
 
@@ -89,11 +83,12 @@ function EstadosPonencia({path}) {
                  
                    
                     <div style={{display:'flex', gap:'.3rem', alignItems:'center'}}>
-                        <div style={{width:'.8rem', height:'5rem', backgroundColor:object.colorEstadoPonencia }}></div>
+                        <div style={{width:'.8rem', height:'5rem', backgroundColor:object[`colorEstado${tipo}`] }}></div>
                         <div style={{}}>
-                        <h2> {object.nombreEventoPonencia} </h2>
+
+                        <h2> {object[`nombreEvento${tipo}`]} </h2>
                     <span>Fecha de Transaccion: <strong> {object.fechaPeticion} </strong></span>
-                    <p>Estado: <span><strong> {object.estadoPonencia} </strong></span></p>
+                    <p>Estado: <span><strong> {object[`estado${tipo}`]} </strong></span></p>
                         </div>
                     
                     </div>
@@ -125,4 +120,4 @@ function EstadosPonencia({path}) {
     </> );
 }
 
-export default EstadosPonencia;
+export default EstadoGlobal;

@@ -1,0 +1,12 @@
+.FirstCuadro {
+    background: url('../../../assets/pexels-jan-van-bizar-19032431.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.FirstCuadro:hover {
+    scale: 1.05;
+}

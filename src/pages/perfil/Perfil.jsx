@@ -2,6 +2,7 @@ import styles from "./perfil.module.css"
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useRouteMatch } from 'react-router-dom';
 import UploadImage from "./components/ProfileConfig";
+import CambiarContra from "./components/CambiarContra";
 
 
 
@@ -30,7 +31,8 @@ function Perfil() {
             }} />
             <Route  path={`${path}/change-password`} component={() => {
               return (
-                <>Cambiar Contrasena</>
+
+                <CambiarContra />
               )
             }} />
           </Switch>

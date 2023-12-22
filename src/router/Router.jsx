@@ -7,7 +7,8 @@ import Admin from "../pages/admin/Admin";
 import  {UserProvider} from '../components/Provider/userProvider'
 import Curriculum from "../pages/curriculum/Curriculum";
 import AdminAuth from "../authentication/auth/adminAuth";
-
+import LandingSiedss from "../pages/landing-page/LandingSiedss";
+import Landing from "../pages/landing-page/LandingSiedss";
 
 function Router() {
     return ( 
@@ -16,9 +17,9 @@ function Router() {
 
     <Switch>
 
-      
-
-    <PrivateRouter  path="/inicio" component={Inicio} />
+    <Route exact path='/' component={Landing} />
+        <PrivateRouter  path="/inicio" component={Inicio} />
+   
 
     <PrivateRouter  path="/curriculum" component={Curriculum} />
 

@@ -12,6 +12,7 @@ import EstudiantesPageAdmin from './pagesAdmin/Estudiantes';
 import Actividades from './pagesAdmin/Actividades';
 import EstudiantesAsistencia from './pagesAdmin/Asistencia';
 import LimpiarDatos from "../../miniComponents/LimpiarDatos"
+import InicioAdmin from './pagesAdmin/InicioAdmin';
 
 export default function UnstyledTabsIntroduction() {
   return (
@@ -40,7 +41,7 @@ export default function UnstyledTabsIntroduction() {
        
 
       </TabsList>
-      <TabPanel value={0}>My account page</TabPanel>
+      <TabPanel value={0}> <InicioAdmin /> </TabPanel>
       <TabPanel value={1}><EstudiantesPageAdmin /></TabPanel>
       <TabPanel value={2}> <Actividades /> </TabPanel>
       <TabPanel value={3}> <EstudiantesAsistencia /> </TabPanel>

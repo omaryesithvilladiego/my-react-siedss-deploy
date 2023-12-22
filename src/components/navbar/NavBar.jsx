@@ -34,6 +34,9 @@ import { Component } from 'react';
 import EstadosPonencia from '../formularios/ponenciaForm/EstadosPonencia';
 import Cookies from 'universal-cookie';
 import LimpiarDatos from '../../miniComponents/LimpiarDatos';
+import { useUserContext } from '../Provider/userProvider';
+import { useEffect, useState } from 'react';
+import EstadoGlobal from '../formularios/ponenciaForm/EstadoGlobal';
 
 
 
@@ -111,8 +114,7 @@ export default function PrimarySearchAppBar() {
   
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-
+  
   
 
   const handleProfileMenuOpen = (event) => {
@@ -324,7 +326,13 @@ export default function PrimarySearchAppBar() {
   //Ponencia
   const [openPonenciaForm, setOpenPonenciaForm] = React.useState(false);
   const handleOpenPonenciaForm = () => setOpenPonenciaForm(true);
-  const handleClosePonenciaForm = () => setOpenPonenciaForm(false);
+  const handleClosePonenciaForm = (event) => {
+    setOpenPonenciaForm(false)
+   
+    event.preventDefault();
+    window.location = "/inicio"
+    
+  };
 
   const menuPonenciaId = 'primary-search-account-menu-ponencia';
   const renderMenuPonencia = (
@@ -411,7 +419,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 2, }}>
-      <AppBar style={{ backgroundColor:'#044d74ae', color:'white', boxShadow:'none', height:'60vh', display:'flex', flexDirection:'column', }} position="static">
+      <AppBar className={styleCss.appBar} style={{  color:'white', boxShadow:'none', height:'60vh', display:'flex', flexDirection:'column', }} position="static">
         <Toolbar>
 
 
@@ -439,7 +447,7 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ display: { xs: 'none', md: 'flex', gap:'1rem' } }} style={{alignItems:'center'}}>
 
             
-          <Button style={{border: '2.5px solid rgb(5, 51, 75)', color:'rgb(5, 51, 75)', fontWeight:'bold'}} variant="outlined"> <Link to='/curriculum'>Ver Curriculum</Link> </Button>
+          <Button style={{border: '2.5px solid white', color:'white', fontWeight:'bold'}} variant="outlined"> <Link to='/curriculum'>Ver Curriculum</Link> </Button>
 
 
             <IconButton onClick={handlePonenciaMenuOpen}   size="large" aria-label="show 4 new mails" color="inherit">
@@ -454,7 +462,9 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             <Modal
         open={openPonenciaForm}
-        onClose={handleClosePonenciaForm}
+        onClose={(event) => {
+          handleClosePonenciaForm(event)
+        } }
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -465,15 +475,17 @@ export default function PrimarySearchAppBar() {
             <Route exact path={`${path}`  }  component={PonenciaFormulario} />
 
             <Route exact path={`${path}/mis-ponencias`  }  component={PonenciaFormulario} />
-            <Route path={`${path}/estado-ponencias`} component={() => {
+            <Route path={`/estado-ponencias`} component={() => {
               return (
                 
                 <>
-              <EstadosPonencia path={path} />
+              <EstadoGlobal path={path} tipo="Ponencia" />
 
                 </>
               )
             }} />
+
+
 
 
            
@@ -518,7 +530,30 @@ export default function PrimarySearchAppBar() {
       >
         <Box sx={style}>
 
-          <CursoFormulario />
+    
+
+          <BrowserRouter>
+          <Switch>
+           
+            <Route exact path={`${path}`  }  component={CursoFormulario } />
+
+            <Route exact path={`${path}/mis-ponencias`  }   />
+            <Route path={`/estado-cursos`} component={() => {
+              return (
+                
+                <>
+              <EstadoGlobal path={path} tipo="Curso" />
+
+                </>
+              )
+            }} />
+
+
+
+
+           
+          </Switch>
+          </BrowserRouter>
         
         
         </Box>
@@ -629,7 +664,7 @@ export default function PrimarySearchAppBar() {
 
 
             <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'flex-end'}} className={styleCss.contentLogo}>
-            <h1>SIEDSS</h1>
+            <h1><Link to="/inicio" >SIEDSS</Link></h1>
             </div>
 
         

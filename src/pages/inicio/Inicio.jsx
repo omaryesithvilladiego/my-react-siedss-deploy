@@ -3,6 +3,7 @@ import PrimarySearchAppBar from "../../components/navbar/NavBar";
 import {Switch, Route, useRouteMatch} from "react-router-dom"
 import Ponencia from "../eventos/Ponencia";
 import Perfil from "../perfil/Perfil";
+import { UserProvider } from "../../components/Provider/userProvider";
 
 function Inicio() {
 
@@ -10,7 +11,7 @@ function Inicio() {
    
     return ( 
     
-    <>
+    <UserProvider>
     
     <PrimarySearchAppBar />
 
@@ -20,7 +21,7 @@ function Inicio() {
 
     </Switch>
     
-    </> );
+    </UserProvider> );
 }
 
 export default Inicio;

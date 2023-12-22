@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from "./curso.module.css"
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Modos = ['Virtual', 'Presencial', 'Mixta'];
 
@@ -33,6 +34,7 @@ function CursoFormulario() {
 
   return (
     <form style={{display:'flex', flexDirection:'column', gap:'1rem'}} onSubmit={handleSubmit}>
+      <Link to="/estado-cursos">Ver estado Cursos</Link>
       <TextField
         label="Nombre del Curso"
         variant="outlined"

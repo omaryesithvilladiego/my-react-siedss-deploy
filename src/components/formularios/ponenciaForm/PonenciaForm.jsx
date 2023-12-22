@@ -22,6 +22,7 @@ import {Link, useRouteMatch} from "react-router-dom"
 import {requestWithToken} from '../../../authentication/helper/helper'
 
 import { APIHOST } from "../../../app2.json"
+import { useUserContext } from '../../Provider/userProvider';
 
 const Modos = ['Virtual', 'Presencial', 'Mixta'];
 
@@ -38,12 +39,12 @@ function PonenciaFormulario() {
   const [selectedFile2, setSelectedFile2] = useState(null);
   const [selectedFile3, setSelectedFile3] = useState(null);
   const [selectedFile4, setSelectedFile4] = useState(null);
-  const [idUsuarioPonencia, setIdUsuarioPonencia] = useState(12345698575545525);
+  const [idUsuarioPonencia, setIdUsuarioPonencia] = useState(0);
   const [loaderPonencia, setLoaderPonencia] = useState(false) // Defino las variables para controlar el cargar la ponencia
   const [exito, setExito] = useState(null)
 
   let {path, url} = useRouteMatch()
-
+  const idUsuario = useUserContext()
 
   // Agregar estados de error
   const [nombreError, setNombreError] = useState('');
@@ -187,7 +188,7 @@ function PonenciaFormulario() {
     formData.append('posterEventoUrlPonencia', selectedFile2)
     formData.append('presentacionEventoUrlPonencia', selectedFile3)
     formData.append('imagenMemoriasUrlPonencia', selectedFile4)
-    formData.append('idEstudiantePonencia', idUsuarioPonencia)
+    formData.append('idEstudiantePonencia', idUsuario)
     formData.append('fechaPonencia', fechaPonencia)
     setLoaderPonencia(true)
     
@@ -221,7 +222,7 @@ function PonenciaFormulario() {
   return (
     <form className={styles.formulario} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '40rem', overflow: 'scroll' }} onSubmit={handleSubmit}>
 
-<Link  to={`${path}/estado-ponencias`}>Ver estado de Poencias</Link>
+<Link  to={`/estado-ponencias`}>Ver estado de Poencias</Link>
 
 
       {exito && <Alert style={{ position: 'absolute' }} severity='success'>La ponencia se guardó correctamente</Alert>}
