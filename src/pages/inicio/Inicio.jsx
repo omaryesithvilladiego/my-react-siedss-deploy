@@ -16,7 +16,7 @@ function Inicio() {
     <PrimarySearchAppBar />
 
     <Switch>
-        <Route path={`${path}/mis-ponencias`} component={Ponencia} />
+        <Route  path={`${path}/mis-ponencias`} component={Ponencia} />
         <Route path={`${path}/mi-perfil`} component={Perfil} />
 
     </Switch>

@@ -4,40 +4,44 @@ import RegistroFormulario from "../components/registroForm/RegistroForm";
 import PrivateRouter from "../authentication/auth/privateRouter";
 import LoginPrivado from "../authentication/auth/loginPrivado";
 import Admin from "../pages/admin/Admin";
-import  {UserProvider} from '../components/Provider/userProvider'
+import { UserProvider } from '../components/Provider/userProvider'
 import Curriculum from "../pages/curriculum/Curriculum";
 import AdminAuth from "../authentication/auth/adminAuth";
 import LandingSiedss from "../pages/landing-page/LandingSiedss";
 import Landing from "../pages/landing-page/LandingSiedss";
+import ChangePassword from "../miniComponents/ChangePassword";
+import FourDigitCodeInput from "../miniComponents/ConfirmCode";
 
 function Router() {
-    return ( 
-    
-    <BrowserRouter>
+    return (
 
-    <Switch>
+        <BrowserRouter>
 
-    <Route exact path='/' component={Landing} />
-        <PrivateRouter  path="/inicio" component={Inicio} />
-   
+            <Switch>
 
-    <PrivateRouter  path="/curriculum" component={Curriculum} />
-
-       
-
-         
-<LoginPrivado path="/login" component={RegistroFormulario} />
+                <Route exact path='/' component={Landing} />
+                <Route exact path='/olvidaste-contraseña' component={ChangePassword} />
+                <Route exact path='/confirmar-code' component={FourDigitCodeInput} />
+                <PrivateRouter path="/inicio" component={Inicio} />
 
 
-<AdminAuth  path="/admin" component={Admin} /> 
-
-        
-    </Switch>
+                <PrivateRouter path="/curriculum" component={Curriculum} />
 
 
 
-    </BrowserRouter>
-    
+
+                <LoginPrivado path="/login" component={RegistroFormulario} />
+
+
+                <AdminAuth path="/admin" component={Admin} />
+
+
+            </Switch>
+
+
+
+        </BrowserRouter>
+
     );
 }
 

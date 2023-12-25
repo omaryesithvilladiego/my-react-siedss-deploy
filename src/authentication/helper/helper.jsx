@@ -7,7 +7,7 @@ const cookies = new Cookies();
 
 export function calculaExtreaccionSesion() {
     const now = new Date().getTime();
-    const newDate = now + 60 *1000 * 1000;
+    const newDate = now + (60 * 30) * 1000;
     return new Date(newDate);
 }
 
@@ -85,7 +85,7 @@ export const requestWithTokenHeader = {
 
 
 export const requestWithTokenGet = {
-    get: function (service) {
+    get: function (service, data) {
         let token = renovarSesionGet();
         return axios.get(`${APIHOST}${service}`, {
             headers: {
@@ -95,6 +95,17 @@ export const requestWithTokenGet = {
     },
 };
 
+
+export function cerrarSesion() {
+    // Elimina las cookies relacionadas con la sesión
+    cookies.remove("_m", { path: "/" });
+    cookies.remove("_a", { path: "/" });
+        // Vaciar el localStorage
+  localStorage.clear()
+
+    // Redirige a la página de inicio de sesión o a la página principal
+    window.location.href = "/inicio";
+}
 
 
 

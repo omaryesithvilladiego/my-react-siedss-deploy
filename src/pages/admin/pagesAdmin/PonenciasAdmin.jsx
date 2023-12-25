@@ -66,7 +66,7 @@ function PonenciasAdmin() {
   }
 
   const getDatos = () => {
-    requestWithTokenGet.get(`ponencia/obtener-ponencia`)
+    requestWithTokenGet.get(`ponencia/obtener-ponencias`)
     .then((response) => {
       setData(false)
       

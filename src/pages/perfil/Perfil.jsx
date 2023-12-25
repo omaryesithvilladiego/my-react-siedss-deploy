@@ -11,7 +11,7 @@ function Perfil() {
   let {path, url} = useRouteMatch()
     return ( 
       <Router>
-      <div className="App">
+      <div >
       <nav className={styles.navContainer}>
       <a className={styles.navItem} href={`${path}/`}>
         Perfil
@@ -32,7 +32,7 @@ function Perfil() {
             <Route  path={`${path}/change-password`} component={() => {
               return (
 
-                <CambiarContra />
+                <CambiarContra/>
               )
             }} />
           </Switch>

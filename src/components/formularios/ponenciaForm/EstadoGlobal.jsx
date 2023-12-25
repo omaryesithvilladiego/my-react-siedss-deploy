@@ -9,10 +9,13 @@ import Stack from '@mui/material/Stack';
 import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Paper } from '@mui/material';
+import { useUserContext } from '../../Provider/userProvider';
 
 
 function EstadoGlobal({path, tipo}) {
-    const [data, setData] = useState([{}])
+    const [data, setData] = useState([])
+    const datas = useUserContext()
+    const [dataCorrect , setDataCorrect] = useState(false)
 
 
 
@@ -20,20 +23,21 @@ function EstadoGlobal({path, tipo}) {
     const getDatos = () => {
        
         const tipoLower = tipo.toLowerCase()
-        requestWithTokenGet.get(`${tipoLower}/obtener-${tipoLower}`)
+        requestWithTokenGet.get(`${tipoLower}/obtener-${tipoLower}/${datas}`)
         .then((response) => {
           
-          
+        
          const datos = response.data
-         console.log(response.data)
          if(response.data.length > 0) {
             setData(datos)
-            console.log(data)
+            setDataCorrect(true)
+           
          }
         
         })
         .catch((err) => {
           console.log(err);
+          setDataCorrect(false)
         
         });
       }
@@ -73,7 +77,7 @@ function EstadoGlobal({path, tipo}) {
         <Paper elevation={2} style={{padding:'1rem', backgroundColor:'#dbf2f2'}} severity='info'>
     <div style={{display:'flex', gap:'2rem', width:'100%', height:'20rem', flexDirection:'column', overflowY:'scroll'}}>
         
-     {data.map(object => {
+     { dataCorrect && data.map(object => {
             return (
                 
                

@@ -291,6 +291,7 @@ function RegistroFormulario() {
 
       var regex = /^[a-zA-Z0-9._%+-]+@campusucc\.edu\.co$/;
       var valido = regex.test(correoInstitucionalEstudiante)
+      valido = true
       console.log('Correo: ' + correoInstitucionalEstudiante)
       if (valido) {
         setCorreoInstitucionalErrorBoolean(false);
@@ -712,7 +713,7 @@ function RegistroFormulario() {
           <div>
             <div>
               <h3 className="">Iniciar Sesión</h3>
-
+          
 
             </div>
           </div>
@@ -749,11 +750,21 @@ function RegistroFormulario() {
 
 
                   </div>
+
+                  <Link to="/olvidaste-contraseña">¿Olvidaste tu contraseña?</Link>
                 </div>
+
+
+              
+
                 <Button fullWidth type="submit" variant="contained" color="primary">
                   <ion-icon name="log-in-outline"></ion-icon>
                   Iniciar Sesión
                 </Button>
+
+           
+              
+                
 
 
 

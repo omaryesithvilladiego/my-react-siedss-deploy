@@ -194,7 +194,6 @@ function PonenciaFormulario() {
     
     requestWithToken.post("ponencia/create-ponencia", formData)
       .then((response) => {
-        console.log(response)
         setExito(response.data.exito)
         setLoaderPonencia(false)
 

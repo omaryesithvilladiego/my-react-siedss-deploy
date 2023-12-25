@@ -11,8 +11,8 @@ import { Button, Typography } from '@mui/material';
 import EstudiantesPageAdmin from './pagesAdmin/Estudiantes';
 import Actividades from './pagesAdmin/Actividades';
 import EstudiantesAsistencia from './pagesAdmin/Asistencia';
-import LimpiarDatos from "../../miniComponents/LimpiarDatos"
 import InicioAdmin from './pagesAdmin/InicioAdmin';
+import { cerrarSesion } from '../../authentication/helper/helper';
 
 export default function UnstyledTabsIntroduction() {
   return (
@@ -23,7 +23,7 @@ export default function UnstyledTabsIntroduction() {
         Bienvenida Profesora Edna Regino
         </Typography>
 
-        <Button type='outline' onClick={LimpiarDatos}>Cerrar Sesión</Button>
+        <Button onClick={cerrarSesion} type='outline' >Cerrar Sesión</Button>
            
 
 

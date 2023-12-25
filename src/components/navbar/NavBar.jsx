@@ -33,10 +33,10 @@ import {Switch, Route,  BrowserRouter} from "react-router-dom"
 import { Component } from 'react';
 import EstadosPonencia from '../formularios/ponenciaForm/EstadosPonencia';
 import Cookies from 'universal-cookie';
-import LimpiarDatos from '../../miniComponents/LimpiarDatos';
 import { useUserContext } from '../Provider/userProvider';
 import { useEffect, useState } from 'react';
 import EstadoGlobal from '../formularios/ponenciaForm/EstadoGlobal';
+import { cerrarSesion } from '../../authentication/helper/helper';
 
 
 
@@ -211,7 +211,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}> <Link to={`${path}/mi-perfil`}>Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={LimpiarDatos}>Cerrar sesión</MenuItem>
+      <MenuItem onClick={cerrarSesion}>Cerrar sesión</MenuItem>
     </Menu>
   );
 
@@ -260,7 +260,10 @@ export default function PrimarySearchAppBar() {
 
     //Proyecto
     const [openProyectoForm, setOpenProyectoForm] = React.useState(false);
-    const handleOpenProyectoForm = () => setOpenProyectoForm(true);
+    const handleOpenProyectoForm = () => {
+      setOpenProyectoForm(true);
+      
+    } 
     const handleCloseProyectoForm = () => setOpenProyectoForm(false);
   
     const menuProyectoId = 'primary-search-account-menu-Proyecto';
@@ -325,7 +328,10 @@ export default function PrimarySearchAppBar() {
 
   //Ponencia
   const [openPonenciaForm, setOpenPonenciaForm] = React.useState(false);
-  const handleOpenPonenciaForm = () => setOpenPonenciaForm(true);
+  const handleOpenPonenciaForm = () => {
+   
+     setOpenPonenciaForm(true);
+  }
   const handleClosePonenciaForm = (event) => {
     setOpenPonenciaForm(false)
    
@@ -473,8 +479,8 @@ export default function PrimarySearchAppBar() {
           <Switch>
            
             <Route exact path={`${path}`  }  component={PonenciaFormulario} />
-
-            <Route exact path={`${path}/mis-ponencias`  }  component={PonenciaFormulario} />
+            <Route exact path={`${path}/mi-perfil/change-password`  }  component={PonenciaFormulario} /> 
+            <Route path={`/mis-ponencias`  }  component={PonenciaFormulario} />
             <Route path={`/estado-ponencias`} component={() => {
               return (
                 
