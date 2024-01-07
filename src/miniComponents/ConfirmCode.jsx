@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -26,10 +26,17 @@ const useStyles = makeStyles((theme) => ({
 const FourDigitCodeInput = () => {
   const classes = useStyles();
   const [code, setCode] = useState(['', '', '', '']);
+  const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const handleInputChange = (index) => (event) => {
     const newCode = [...code];
     newCode[index] = event.target.value;
+
+    if (event.target.value.length > 0 && index < inputRefs.length - 1) {
+      // Cambia al siguiente campo de entrada
+      inputRefs[index + 1].current.focus();
+    }
+
     setCode(newCode);
   };
 
@@ -57,6 +64,7 @@ const FourDigitCodeInput = () => {
                   maxLength: 1,
                   style: { textAlign: 'center' },
                 }}
+                inputRef={inputRefs[index]}
               />
             </Grid>
           ))}

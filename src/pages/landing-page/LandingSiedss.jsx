@@ -1,208 +1,259 @@
-import * as React from 'react';
+import HeaderLanding from "./HaderLanding";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Unstable_Grid2';
+import style from "./headerlanding.module.css"
 
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-export default function   Landing() {
-
-
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+function Landing() {
   return (
-    <Box>
-       <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        backgroundColor:'red',
-        '& > :not(style)': {
-          m: 1,
-          width: 6000,
-          height: 128,
-        },
-      }}
-    >
-      <Paper 
-      elevation={2} >
-          <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Iniciar Sesión
-          </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <>
+
+      <Box>
+        <HeaderLanding />
+      </Box>
+
+      <Box style={{
+
+
+
+        width: '80%',
+        height: '100vh',
+        margin: '0 auto',
+        marginTop: '4rem'
+
+      }}>
+
+        <Grid container spacing={3}>
+
+          <Grid xs={12} sm={6} md={6}>
+
+            <Paper className={style.publicidadImg} sx={{
+              borderRadius: '1rem'
+            }} elevation={2}>
+
+
+              <Grid container spacing={5}>
+                <Grid xs={10} sm={6} item>
+
+                  <Paper className={style.capturaFirst} style={{ width: '100%', height: '15rem', borderRadius: '1.5rem' }} elevation={1}>
+
+                  </Paper>
+
+
+                </Grid>
+
+                <Grid xs={12} md={12} sm={6} item>
+
+                  <Paper style={{ width: '100%', borderRadius: '1.5rem' }} elevation={0} >
+
+
+                    <div>
+
+                      <h4 style={{ fontSize: '25px' }}>¡Optimiza tu Semillero con Nuestro Dashboard Intuitivo!</h4>
+                      <p>Añadir y gestionar actividades nunca fue tan fácil. Responde rápidamente y organiza tareas con nuestra interfaz amigable. ¡Simplifica tu vida semillero con cada clic!</p>
+
+                    </div>
+
+
+                  </Paper>
+
+
+                </Grid>
+              </Grid>
+
+
+
+
+
+
+
+
+
+            </Paper>
+
+
+          </Grid>
+
+          <Grid item xs={12} sm={6} >
+
+            <Paper className={style.publicidadImg} sx={{
+              borderRadius: '1rem'
+            }} elevation={2}>
+
+
+              <Grid container spacing={5}>
+
+
+                <Grid xs={10} sm={6} item>
+
+                  <Paper className={style.capturaFirst} style={{ width: '100%', height: '15rem', borderRadius: '1.5rem' }} elevation={1}>
+
+                  </Paper>
+
+
+                </Grid>
+
+                <Grid xs={12} md={12} sm={6} item>
+
+                  <Paper style={{ width: '100%', borderRadius: '1.5rem' }} elevation={0} >
+
+
+                    <div>
+
+                      <h4 style={{ fontSize: '25px' }}>¡Optimiza tu Semillero con Nuestro Dashboard Intuitivo!</h4>
+                      <p>Añadir y gestionar actividades nunca fue tan fácil. Responde rápidamente y organiza tareas con nuestra interfaz amigable. ¡Simplifica tu vida semillero con cada clic!</p>
+
+                    </div>
+
+
+                  </Paper>
+
+
+                </Grid>
+
+
+              </Grid>
+
+
+
+
+
+
+
+
+
+            </Paper>
+
+
+
+
+          </Grid>
+
+          <Grid item xs={12} sm={6} >
+
+<Paper className={style.publicidadImg} sx={{
+  borderRadius: '1rem'
+}} elevation={2}>
+
+
+  <Grid container spacing={5}>
+
+    
+    <Grid xs={10} sm={6} item>
+
+      <Paper className={style.capturaFirst} style={{ width: '100%', height: '15rem', borderRadius: '1.5rem' }} elevation={1}>
+
       </Paper>
-      
-    </Box>
 
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        backgroundColor:'red',
-        '& > :not(style)': {
-          m: 1,
-          width: 128,
-          height: 128,
-        },
-      }}
-    >
-      <Paper 
-      elevation={2} />
-      <Paper 
-      elevation={2} />
-      <Paper 
-      elevation={2} />
-      <Paper 
-      elevation={2} />
-      
-    </Box>
 
-    </Box>
-   
+    </Grid>
+
+    <Grid xs={12} md={12} sm={6} item>
+
+      <Paper style={{ width: '100%', borderRadius: '1.5rem' }} elevation={0} >
+
+
+        <div>
+
+          <h4 style={{ fontSize: '25px' }}>¡Optimiza tu Semillero con Nuestro Dashboard Intuitivo!</h4>
+          <p>Añadir y gestionar actividades nunca fue tan fácil. Responde rápidamente y organiza tareas con nuestra interfaz amigable. ¡Simplifica tu vida semillero con cada clic!</p>
+
+        </div>
+
+
+      </Paper>
+
+
+    </Grid>
+
+
+  </Grid>
+
+
+
+
+
+
+
+
+
+</Paper>
+
+
+
+
+</Grid>
+
+<Grid item xs={12} sm={6} >
+
+<Paper className={style.publicidadImg} sx={{
+  borderRadius: '1rem'
+}} elevation={2}>
+
+
+  <Grid container spacing={5}>
+
+    
+    <Grid xs={10} sm={6} item>
+
+      <Paper className={style.capturaFirst} style={{ width: '100%', height: '15rem', borderRadius: '1.5rem' }} elevation={1}>
+
+      </Paper>
+
+
+    </Grid>
+
+    <Grid xs={12} md={12} sm={6} item>
+
+      <Paper style={{ width: '100%', borderRadius: '1.5rem' }} elevation={0} >
+
+
+        <div>
+
+          <h4 style={{ fontSize: '25px' }}>¡Optimiza tu Semillero con Nuestro Dashboard Intuitivo!</h4>
+          <p>Añadir y gestionar actividades nunca fue tan fácil. Responde rápidamente y organiza tareas con nuestra interfaz amigable. ¡Simplifica tu vida semillero con cada clic!</p>
+
+        </div>
+
+
+      </Paper>
+
+
+    </Grid>
+
+
+  </Grid>
+
+
+
+
+
+
+
+
+
+</Paper>
+
+
+
+
+</Grid>
+
+
+        </Grid>
+
+
+
+
+      </Box>
+
+    </>
+
   );
 }
+
+export default Landing;
