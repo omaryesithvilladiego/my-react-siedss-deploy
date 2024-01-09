@@ -2,13 +2,14 @@
 
 
 .tittle {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .tittle span {
-    font-size: 6vw;
+    font-size: 5vw;
    
 }
+
 
 
 
@@ -21,6 +22,23 @@
 
     
 }
+
+.containerTituloPrincipal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+ }
+
+ @media (min-width:780px) {
+    .containerTituloPrincipal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+       
+     }
+ }
+
 
 
 
@@ -44,8 +62,12 @@
        
     }
 
+ 
+
    
 }
+
+
 
 
 .menuBarMovil {
@@ -78,6 +100,7 @@ Landing
  .publicidadImg {
     width: 100%;
     height: 45rem;
+    margin: 0 auto;
  }
 
  .capturaFirst {
@@ -92,3 +115,4 @@ Landing
  .containerGrid {
     background-color: red;
  }
+

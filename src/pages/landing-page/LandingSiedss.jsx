@@ -8,6 +8,8 @@ import style from "./headerlanding.module.css"
 import DvrIcon from '@mui/icons-material/Dvr';
 import { Button } from "@material-ui/core";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import AirplayIcon from "@mui/icons-material/Airplay";
+import  PentagonSharpIcon  from "@mui/icons-material/PentagonSharp";
 function Landing() {
   return (
     <>
@@ -21,22 +23,23 @@ function Landing() {
           height: "100vh",
           margin: "0 auto",
           marginTop: "4rem",
+          display:'flex'
         }}
       >
-        <Grid container spacing={3}>
+        <Grid style={{height:'fit-content', borderRadius:'6px'}} container spacing={3}>
           <Grid  xs={12} sm={12} md={6} xl={3}>
             <Paper
               style={{ backgroundColor: "#1CFEBA" }}
               className={style.publicidadImg}
-              sx={{}}
+              sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
             >
               <Grid
-                style={{ width: "90%", margin: "0 auto" }}
+                style={{ width: "90%", margin: "0 auto",justifyContent:'center'}}
                 container
                 spacing={5}
               >
-                <Grid xs={10} sm={6} item>
+                <Grid sx={{ display:'flex', justifyContent:'center'}} item>
                   <Paper
                     
                     style={{
@@ -83,18 +86,23 @@ function Landing() {
           </Grid>
 
           <Grid  xs={12} sm={12} md={6} xl={3}>
+
+
             <Paper
               style={{ backgroundColor: "#B8CDF8" }}
               className={style.publicidadImg}
-              sx={{}}
+              sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
             >
               <Grid
-                style={{ width: "90%", margin: "0 auto" }}
+                style={{ width: "90%", margin: "0 auto",justifyContent:'center'}}
                 container
                 spacing={5}
               >
-                <Grid xs={10} sm={6} item>
+
+
+                <Grid  sx={{ display:'flex', justifyContent:'center'}} item>
+
                   <Paper
                     
                     style={{
@@ -114,6 +122,7 @@ function Landing() {
 
                     <LibraryBooksIcon style={{fontSize:'4rem', color:'white'}} />
                   </Paper>
+
                 </Grid>
 
                 <Grid xs={12} md={12} sm={6} item>
@@ -133,23 +142,33 @@ function Landing() {
                     </div>
                   </Paper>
                 </Grid>
+
+
               </Grid>
             </Paper>
+
+
+
           </Grid>
 
           <Grid  xs={12} sm={12} md={6} xl={3}>
+
+
             <Paper
-              style={{ backgroundColor: "#95F2D9" }}
+              style={{ backgroundColor: "#B8CDF8" }}
               className={style.publicidadImg}
-              sx={{}}
+              sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
             >
               <Grid
-                style={{ width: "90%", margin: "0 auto" }}
+                style={{ width: "90%", margin: "0 auto",justifyContent:'center'}}
                 container
                 spacing={5}
               >
-                <Grid xs={10} sm={6} item>
+
+
+                <Grid  sx={{ display:'flex', justifyContent:'center'}} item>
+
                   <Paper
                     
                     style={{
@@ -160,14 +179,16 @@ function Landing() {
                       display:'flex',
                       flexDirection:'column',
                       justifyContent:'center',
-                      alignItems:'center'
+                      alignItems:'center',
+                      backgroundColor:'black'
                     }}
                     elevation={1}
                   >
 
 
-                    <DvrIcon style={{fontSize:'4rem'}} />
+                    <LibraryBooksIcon style={{fontSize:'4rem', color:'white'}} />
                   </Paper>
+
                 </Grid>
 
                 <Grid xs={12} md={12} sm={6} item>
@@ -177,36 +198,43 @@ function Landing() {
                   >
                     <div style={{display:'flex', gap:'2rem', flexDirection:'column', alignItems:'left'}}>
                       <h4 style={{ fontSize: "35px",  }}>
-                      ¡Gestión Integral para tus actividades del semillero!
+                      Currículum Impecable: <br /> Registra Logros en el Semillero
                       </h4>
                       <p>
-                        Añadir y gestionar actividades nunca fue tan fácil.
-                        Responde rápidamente y organiza tareas con nuestra
-                        interfaz amigable. ¡Simplifica tu vida semillero con
-                        cada clic!
+                      Añade y organiza tus actividades del semillero con eficiencia, y observa cómo tu currículum cobra vida. Desde ponencias destacadas hasta proyectos innovadores
                       </p>
 
                     <Button variant="outlined" style={{width:'fit-content'}}>Más Información</Button>
                     </div>
                   </Paper>
                 </Grid>
+
+
               </Grid>
             </Paper>
+
+
+
           </Grid>
 
           <Grid  xs={12} sm={12} md={6} xl={3}>
+
+
             <Paper
-              style={{ backgroundColor: "#9D8DF1" }}
+              style={{ backgroundColor: "#B8CDF8" }}
               className={style.publicidadImg}
-              sx={{}}
+              sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
             >
               <Grid
-                style={{ width: "90%", margin: "0 auto" }}
+                style={{ width: "90%", margin: "0 auto",justifyContent:'center'}}
                 container
                 spacing={5}
               >
-                <Grid xs={10} sm={6} item>
+
+
+                <Grid  sx={{ display:'flex', justifyContent:'center'}} item>
+
                   <Paper
                     
                     style={{
@@ -217,14 +245,16 @@ function Landing() {
                       display:'flex',
                       flexDirection:'column',
                       justifyContent:'center',
-                      alignItems:'center'
+                      alignItems:'center',
+                      backgroundColor:'black'
                     }}
                     elevation={1}
                   >
 
 
-                    <DvrIcon style={{fontSize:'4rem'}} />
+                    <LibraryBooksIcon style={{fontSize:'4rem', color:'white'}} />
                   </Paper>
+
                 </Grid>
 
                 <Grid xs={12} md={12} sm={6} item>
@@ -234,21 +264,23 @@ function Landing() {
                   >
                     <div style={{display:'flex', gap:'2rem', flexDirection:'column', alignItems:'left'}}>
                       <h4 style={{ fontSize: "35px",  }}>
-                      ¡Gestión Integral para tus actividades del semillero!
+                      Currículum Impecable: <br /> Registra Logros en el Semillero
                       </h4>
                       <p>
-                        Añadir y gestionar actividades nunca fue tan fácil.
-                        Responde rápidamente y organiza tareas con nuestra
-                        interfaz amigable. ¡Simplifica tu vida semillero con
-                        cada clic!
+                      Añade y organiza tus actividades del semillero con eficiencia, y observa cómo tu currículum cobra vida. Desde ponencias destacadas hasta proyectos innovadores
                       </p>
 
                     <Button variant="outlined" style={{width:'fit-content'}}>Más Información</Button>
                     </div>
                   </Paper>
                 </Grid>
+
+
               </Grid>
             </Paper>
+
+
+
           </Grid>
         </Grid>
       </Box>

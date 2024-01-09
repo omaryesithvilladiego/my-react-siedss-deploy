@@ -29,7 +29,7 @@ function HeaderLanding() {
             backgroundColor: '#0A2463',
             color: 'white',
             maxWidth: '100%',
-            height: '100%',
+            height: 'fit-content',
             margin: '0',
 
         }}>
@@ -41,12 +41,11 @@ function HeaderLanding() {
 
                 color: 'white',
                 width: '100%',
-                height: '15vh',
-                margin: '0',
+                height: '10vh',
+                margin: '0 auto',
                 display: 'flex',
                 justifyContent: 'space-around',
                 alignItems: 'center',
-                borderBottom: '.001px solid white'
 
             }}>
 
@@ -73,9 +72,9 @@ function HeaderLanding() {
             <Stack spacing={2} direction="row" style={{ color: 'white', width: '96%', margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '2rem', maxWidth:'80vw'}}>
 
 
-                <Paper elevation={0} style={{ width: '72vw', height: '40rem', backgroundColor: 'transparent', color: 'white', display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: '2rem' }} >
+                <Paper className={style.containerTituloPrincipal} elevation={0} style={{ width: '72vw', height: '40rem', backgroundColor: 'transparent', color: 'white'}} >
 
-                    <h1 className={style.tittle} style={{ textJustify: '1rem', display: 'flex', gap: '1rem', flexDirection: 'column' }}> <span > ¡Gestiona tu Éxito Académico!</span> <br />  Administra Ponencias, Cursos y Más con la Potente Aplicación del Semillero de Investigación 🌱💡</h1>
+                    <h2 className={style.tittle} style={{ textJustify: '1rem', display: 'flex', gap: '1rem', flexDirection: 'column' }}> <span > ¡Gestiona tu Éxito Académico!</span> <br />  Administra Ponencias, Cursos y Más con la Potente Aplicación del Semillero de Investigación 🌱💡</h2>
                     <Button style={{ width: 'fit-content', fontSize: '1.4rem' }} variant='contained'>Empieza Gratis 👌</Button>
 
 
