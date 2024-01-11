@@ -10,6 +10,8 @@ import { Button } from "@material-ui/core";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import AirplayIcon from "@mui/icons-material/Airplay";
 import  PentagonSharpIcon  from "@mui/icons-material/PentagonSharp";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import HubIcon from '@mui/icons-material/Hub';
 function Landing() {
   return (
     <>
@@ -20,13 +22,15 @@ function Landing() {
       <Box
         style={{
           width: "80%",
-          height: "100vh",
+          height: "fit-content",
           margin: "0 auto",
           marginTop: "4rem",
           display:'flex'
         }}
       >
         <Grid style={{height:'fit-content', borderRadius:'6px'}} container spacing={3}>
+
+
           <Grid  xs={12} sm={12} md={6} xl={3}>
             <Paper
               style={{ backgroundColor: "#1CFEBA" }}
@@ -155,7 +159,7 @@ function Landing() {
 
 
             <Paper
-              style={{ backgroundColor: "#B8CDF8" }}
+              style={{ backgroundColor: "#BFDBF7" }}
               className={style.publicidadImg}
               sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
@@ -186,7 +190,7 @@ function Landing() {
                   >
 
 
-                    <LibraryBooksIcon style={{fontSize:'4rem', color:'white'}} />
+                    <ModeEditIcon  style={{fontSize:'4rem', color:'white'}} />
                   </Paper>
 
                 </Grid>
@@ -198,10 +202,10 @@ function Landing() {
                   >
                     <div style={{display:'flex', gap:'2rem', flexDirection:'column', alignItems:'left'}}>
                       <h4 style={{ fontSize: "35px",  }}>
-                      Currículum Impecable: <br /> Registra Logros en el Semillero
+                      Seguimiento personalizado: <br /> Aprobación de Actividades
                       </h4>
                       <p>
-                      Añade y organiza tus actividades del semillero con eficiencia, y observa cómo tu currículum cobra vida. Desde ponencias destacadas hasta proyectos innovadores
+                      Tus Logros: Destácate en el Semillero con actividades Revisadas y Aprobadas Personalmente por el jefe del semillero, luego tus actividades se agregaran a tu curriculum
                       </p>
 
                     <Button variant="outlined" style={{width:'fit-content'}}>Más Información</Button>
@@ -221,7 +225,7 @@ function Landing() {
 
 
             <Paper
-              style={{ backgroundColor: "#B8CDF8" }}
+              style={{ backgroundColor: "#022B3A" }}
               className={style.publicidadImg}
               sx={{display:'flex', justifyContent:'center',  flexDirection:'column'}}
               elevation={2}
@@ -233,7 +237,7 @@ function Landing() {
               >
 
 
-                <Grid  sx={{ display:'flex', justifyContent:'center'}} item>
+                <Grid  sx={{ display:'flex'}} item>
 
                   <Paper
                     
@@ -252,25 +256,25 @@ function Landing() {
                   >
 
 
-                    <LibraryBooksIcon style={{fontSize:'4rem', color:'white'}} />
+                    < HubIcon style={{fontSize:'4rem', color:'white'}} />
                   </Paper>
 
                 </Grid>
 
                 <Grid xs={12} md={12} sm={6} item>
                   <Paper
-                    style={{ width: "100%", borderRadius: "1.5rem", backgroundColor:'transparent' }}
+                    style={{ width: "100%", borderRadius: "1.5rem", backgroundColor:'transparent', color:'white' }}
                     elevation={0}
                   >
                     <div style={{display:'flex', gap:'2rem', flexDirection:'column', alignItems:'left'}}>
                       <h4 style={{ fontSize: "35px",  }}>
-                      Currículum Impecable: <br /> Registra Logros en el Semillero
+                      Centraliza tu Éxito: Un Espacio Único para tus Logros
                       </h4>
                       <p>
-                      Añade y organiza tus actividades del semillero con eficiencia, y observa cómo tu currículum cobra vida. Desde ponencias destacadas hasta proyectos innovadores
+                      Todo lo que necesitas para destacar en el Semillero ahora está centralizado! Desde tus ponencias más destacadas hasta esos proyectos innovadores que te definen, todo está aquí. 
                       </p>
 
-                    <Button variant="outlined" style={{width:'fit-content'}}>Más Información</Button>
+                    <Button variant="outlined" style={{width:'fit-content', color:'white', border:'1px solid white'}}>Más Información</Button>
                     </div>
                   </Paper>
                 </Grid>
@@ -283,7 +287,25 @@ function Landing() {
 
           </Grid>
         </Grid>
+
+
       </Box>
+
+
+          <Grid container sx={{}}>
+
+
+          
+            <Grid xs={{}}>
+
+              
+            </Grid>
+
+
+
+
+
+          </Grid>
     </>
   );
 }
