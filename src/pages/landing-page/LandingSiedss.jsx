@@ -2,17 +2,23 @@ import HeaderLanding from "./HaderLanding";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
 import style from "./headerlanding.module.css"
 import DvrIcon from '@mui/icons-material/Dvr';
 import { Button } from "@material-ui/core";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import AirplayIcon from "@mui/icons-material/Airplay";
-import  PentagonSharpIcon  from "@mui/icons-material/PentagonSharp";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import HubIcon from '@mui/icons-material/Hub';
 function Landing() {
+
+
+  const [display, setDisplay] = React.useState('')
+
+
+
+
+
+
   return (
     <>
       <Box>
@@ -292,11 +298,27 @@ function Landing() {
       </Box>
 
 
-          <Grid container sx={{}}>
+          <Grid container sx={{width:'100%', height:'100vh'}}>
 
 
           
-            <Grid xs={{}}>
+            <Grid xs={12} md={6}  sx={{display:'flex', flexDirection:'column', justifyContent:'center'}} >
+
+             
+
+              <Paper sx={{width:'80%', margin:'0 auto', height:'80%',}} elevation={10}>
+
+              </Paper>
+
+              
+            </Grid>
+
+            <Grid sx={{ display:'flex', flexDirection:'column', justifyContent:'center'}}  xs={12} md={6} >
+
+            <Paper sx={{width:'80%', margin:'0 auto', height:'80%',}} elevation={10}>
+
+</Paper>
+
 
               
             </Grid>
