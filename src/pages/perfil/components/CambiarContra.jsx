@@ -9,13 +9,15 @@ import { Paper, TextField, Button, Typography, Container } from '@mui/material';
 
 function CambiarContra() {
 
-    const idUsuario = useUserContext() 
-  
+  const dataUser = useUserContext()
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
+
+    if(dataUser) {
+      const idUsuario = dataUser.data.idUsuarioRegistro
     // Realiza las validaciones aquí
     if(newPassword == '' || confirmPassword == '' ) {
         setError('No hay datos ingresados')
@@ -41,6 +43,9 @@ function CambiarContra() {
     console.log(error)
       
   }
+
+    }
+  
   };
 
 

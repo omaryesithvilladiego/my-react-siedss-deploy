@@ -19,7 +19,7 @@ import { requestWithToken } from '../../../authentication/helper/helper';
 import Grid from '@mui/material/Unstable_Grid2';
 
 function UploadImage ()  {
-  const idUsuario = useUserContext();
+  const dataUser = useUserContext();
 
   const [imageFile, setImageFile] = useState(null);
   const [imageFile2, setImageFile2] = useState(null);
@@ -39,27 +39,32 @@ function UploadImage ()  {
 
   const uploadImageToServer = (e) => {
     e.preventDefault()
+    if(dataUser) {
+      const formData = new FormData()
+      const idUsuario = dataUser.data.idUsuarioRegistro
+      formData.append('fotoPerfilUrl', imageFile)
+      formData.append('fotoPortadaUrl', imageFile2)
+        
+        axios
+          .post(`${APIHOST}usuarios/actualizar-foto-perfil/${idUsuario}`, formData)
+          .then((response) => {
+            if (response.data.exito) {
+              // Manejar la respuesta exitosa
+              setMensajeExito('Imagen subida correctamente')
+             
+            } else {
+              // Manejar la respuesta fallida
+              console.log('Error al subir la imagen:', response.data);
+            }
+          })
+          .catch((error) => {
+            console.log('Error al subir la imagen:', error.message);
+          });
 
-    const formData = new FormData()
+    }
+   
 
-    formData.append('fotoPerfilUrl', imageFile)
-    formData.append('fotoPortadaUrl', imageFile2)
-      
-      axios
-        .post(`${APIHOST}usuarios/actualizar-foto-perfil/${idUsuario}`, formData)
-        .then((response) => {
-          if (response.data.exito) {
-            // Manejar la respuesta exitosa
-            setMensajeExito('Imagen subida correctamente')
-           
-          } else {
-            // Manejar la respuesta fallida
-            console.log('Error al subir la imagen:', response.data);
-          }
-        })
-        .catch((error) => {
-          console.log('Error al subir la imagen:', error.message);
-        });
+  
     
   };
 
@@ -67,23 +72,41 @@ function UploadImage ()  {
 
    
 
-    <Container maxWidth='md'>
+   <div
+style={{
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  width: '80vw',
+  height: 'fit-content',
+  padding: '2rem',
+  margin: '0 auto',
+}}
+>
+{mensajeExito && <Alert severity="success"> {mensajeExito} </Alert>} 
 
-      <Grid container>
+<form onSubmit={uploadImageToServer}>
+  <input type="file"
+  id='file'
 
-        <Grid xs={12}>
+  onChange={handleFileChange}
+  
+  />
 
-         
+<input type="file"
+id='file2'
 
-        </Grid>
+onChange={handleFileChange2}
 
-        <Grid xs={12}>
+/>
 
-      </Grid>
 
-      </Grid>
+<Button type="submit" variant="contained" color="primary">
+  Enviar
+</Button>
+</form>
 
-    </Container>
+</div>
   
   );
 };
@@ -92,38 +115,3 @@ export default UploadImage;
 
 
 
-// <div
-// style={{
-//   display: 'flex',
-//   flexWrap: 'wrap',
-//   flexDirection: 'row',
-//   width: '80vw',
-//   height: 'fit-content',
-//   padding: '2rem',
-//   margin: '0 auto',
-// }}
-// >
-// {mensajeExito && <Alert severity="success"> {mensajeExito} </Alert>} 
-
-// <form onSubmit={uploadImageToServer}>
-//   <input type="file"
-//   id='file'
-
-//   onChange={handleFileChange}
-  
-//   />
-
-// <input type="file"
-// id='file2'
-
-// onChange={handleFileChange2}
-
-// />
-
-
-// <Button type="submit" variant="contained" color="primary">
-//   Enviar
-// </Button>
-// </form>
-
-// </div>

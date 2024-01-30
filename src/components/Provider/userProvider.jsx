@@ -1,32 +1,45 @@
 import React, { useContext, useState, useEffect } from "react";
+import { APIHOST } from '../../app2.json';
+import axios from "axios";
 
-const userContext = React.createContext()
+const userContext = React.createContext();
 
 export function useUserContext() {
-  return useContext(userContext)
+  return useContext(userContext);
 }
-
-
-
 
 export function UserProvider({ children }) {
-    const [datosLocalStorage, setDatosLocalStorage] = useState('');
+  const [datosLocalStorage, setDatosLocalStorage] = useState(null);
 
+  useEffect(() => {
+    // Recuperar datos del localStorage
+    const datosGuardados = localStorage.getItem('user');
 
-    useEffect(() => {
-        // Recuperar datos del localStorage
-        const datosGuardados = localStorage.getItem('user');
-    
-        // Actualizar el estado con los datos recuperados
-        if (datosGuardados) {
-          setDatosLocalStorage(datosGuardados);
-        }
-      }, []);
+    async function obtenerDatos() {
+      try {
+        await axios.post(`${APIHOST}usuarios/obtener-foto-perfil/${datosGuardados}`)
+        .then((response) => {
+          setDatosLocalStorage(response.data); // Asegúrate de acceder a la propiedad 'data' de la respuesta
+        })
+        .catch(err => console.log(err))
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
+    // Actualizar el estado con los datos recuperados
+    if (datosGuardados) {
+      return(() => {
+        obtenerDatos();
+      })
+      
+    }
+  }, []); // Solo ejecuta el useEffect en el montaje inicial
 
-    return ( 
+  // Renderiza el componente hijo con el contexto proporcionando datosLocalStorage
+  return (
     <userContext.Provider value={datosLocalStorage}>
-    {children}
-    </userContext.Provider> );
+      {children}
+    </userContext.Provider>
+  );
 }
-

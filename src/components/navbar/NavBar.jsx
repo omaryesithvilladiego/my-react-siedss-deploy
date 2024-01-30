@@ -101,23 +101,16 @@ const cookies = new Cookies();
 
 
 export default function PrimarySearchAppBar() {
-  const id = useUserContext();
-  const [data, setData] = useState(null)
+
+ const dataUser = useUserContext()
+ const [fotoPerfil, setFotoPerfil] = useState('')
+
   useEffect(() => {
-    const getFotoPerfilUrl = async () => {
-      const response = await axios.post(`${APIHOST}usuarios/obtener-foto-perfil/${id}`);
-  
-      if (response.data.data.fotoPerfilUrl) {
-        const fotoPerfilUrl = response.data.data.fotoPerfilUrl;
-  
-        console.log(fotoPerfilUrl);
-        setData(fotoPerfilUrl)
-        // Haz algo con la URL de la foto de perfil, como renderizarla en tu componente
+      
+      if(dataUser) {
+        setFotoPerfil(dataUser.data.fotoPerfilUrl)
       }
-    };
-  
-    getFotoPerfilUrl();
-  }, [id]);
+  },[dataUser]);
   
  
 
@@ -434,7 +427,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-         <embed src={data} width="35px" height="35px" />
+         <embed src={fotoPerfil} width="35px" height="35px" />
 
         </IconButton>
        <p>Perfil</p>
@@ -662,7 +655,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
                
-                <img style={{borderRadius:'20px'}} src={data} alt="img" width="35px" height="35px" />
+                <img style={{borderRadius:'20px'}} src={fotoPerfil} alt="img" width="35px" height="35px" />
 
             </IconButton>
 
