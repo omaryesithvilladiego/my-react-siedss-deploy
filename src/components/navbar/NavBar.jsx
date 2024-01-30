@@ -33,10 +33,13 @@ import {Switch, Route,  BrowserRouter} from "react-router-dom"
 import { Component } from 'react';
 import EstadosPonencia from '../formularios/ponenciaForm/EstadosPonencia';
 import Cookies from 'universal-cookie';
-import { useUserContext } from '../Provider/userProvider';
+import { useUserContext } from '../../components/Provider/userProvider';
 import { useEffect, useState } from 'react';
 import EstadoGlobal from '../formularios/ponenciaForm/EstadoGlobal';
 import { cerrarSesion } from '../../authentication/helper/helper';
+import { APIHOST } from '../../app2.json';
+import axios from 'axios';
+
 
 
 
@@ -96,8 +99,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const cookies = new Cookies();
 
 
-export default function PrimarySearchAppBar() {
 
+export default function PrimarySearchAppBar() {
+  const id = useUserContext();
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    const getFotoPerfilUrl = async () => {
+      const response = await axios.post(`${APIHOST}usuarios/obtener-foto-perfil/${id}`);
+  
+      if (response.data.data.fotoPerfilUrl) {
+        const fotoPerfilUrl = response.data.data.fotoPerfilUrl;
+  
+        console.log(fotoPerfilUrl);
+        setData(fotoPerfilUrl)
+        // Haz algo con la URL de la foto de perfil, como renderizarla en tu componente
+      }
+    };
+  
+    getFotoPerfilUrl();
+  }, [id]);
+  
+ 
 
   let {path, url }= useRouteMatch()
 
@@ -412,7 +434,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-         <embed src="https://backend-siedss-deploy.onrender.com/public/ponencias/imagenMemoriasUrlPonencia-1699752604834-714624177.jpeg" type="image/jpeg" width="35px" height="35px" />
+         <embed src={data} width="35px" height="35px" />
 
         </IconButton>
        <p>Perfil</p>
@@ -640,7 +662,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
                
-                <img style={{borderRadius:'20px'}} src="https://backend-siedss-deploy.onrender.com/public/ponencias/imagenMemoriasUrlPonencia-1699752604834-714624177.jpeg" alt="img" width="35px" height="35px" />
+                <img style={{borderRadius:'20px'}} src={data} alt="img" width="35px" height="35px" />
 
             </IconButton>
 
@@ -675,7 +697,7 @@ export default function PrimarySearchAppBar() {
 
         
 
-
+ 
 
 
 

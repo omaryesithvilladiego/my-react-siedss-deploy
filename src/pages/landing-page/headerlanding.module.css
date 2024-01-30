@@ -96,23 +96,3 @@
 Landing
  */
 
-
- .publicidadImg {
-    width: 100%;
-    height: 45rem;
-    margin: 0 auto;
- }
-
- .capturaFirst {
-    background: url("../../assets/capturafirst.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
- }
-
-
- .containerGrid {
-    background-color: red;
- }
-

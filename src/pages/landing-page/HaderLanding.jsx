@@ -85,53 +85,7 @@ function HeaderLanding() {
 
                 <Paper className={style.information} elevation={0} style={{ width: '50vw', height: '20rem', backgroundColor:'transparent'}} >
 
-                    <Box sx={{ flexGrow: 1, padding:'1rem', flexWrap:'wrap', height:'100%', display:'flex', justifyContent:'center', alignItems:'center', backgroundColor:'transparent'}}>
-                        <Grid sx={{  flexGrow: 1, flexWrap:'wrap'}} container spacing={2}>
-                            <Grid xs={6}>
-                                <Item>Aplica tus conocimientos</Item>
-                            </Grid>
-                            <Grid xs={6}>
-                            <Item>Ponencias alrededor del mundo</Item>
-                            </Grid>
-
-                            <Grid xs={2}>
-                                <Item>Cursos</Item> 
-                            </Grid>
-
-                            <Grid xs={3}>
-                                <Item>Ponencias</Item> 
-                            </Grid>
-
-                            <Grid xs={3}>
-                                <Item>Proyectos</Item> 
-                            </Grid>
-
-                            
-                            <Grid xs={4}>
-                                <Item>Premios</Item> 
-                            </Grid>
-
-                            <Grid xs={4}>
-                                <Item>Actividades extracurriculares</Item> 
-                            </Grid>
-
-                            <Grid xs={5}>
-                                <Item>Oportunidades de negocios</Item> 
-                            </Grid>
-
-                            <Grid xs={5}>
-                                <Item>Metodologías Activas</Item> 
-                            </Grid>
-
-                            
-                           
-                          
-                          
-                          
-                          
-                        </Grid>
-                    </Box>
-
+                
 
 
                 </Paper>

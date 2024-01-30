@@ -1,76 +1,129 @@
-import React, { useEffect, useState } from 'react';
-import { Paper, Button, Avatar, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Paper,
+  Button,
+  Avatar,
+  Typography,
+  TextField,
+  IconButton,
+  Box,
+  Alert,
+  Container,
+} from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { useDropzone } from 'react-dropzone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import {useUserContext} from '../../../components/Provider/userProvider'
+import { useUserContext } from '../../../components/Provider/userProvider';
+import axios from 'axios';
+import { APIHOST } from '../../../app2.json';
+import { requestWithToken } from '../../../authentication/helper/helper';
+import Grid from '@mui/material/Unstable_Grid2';
 
-const UploadImage = () => {
-
-  const userId = useUserContext()
-
-
-
+function UploadImage ()  {
+  const idUsuario = useUserContext();
 
   const [imageFile, setImageFile] = useState(null);
+  const [imageFile2, setImageFile2] = useState(null);
+  const [mensajeExito, setMensajeExito] = useState(null)
 
-  const onDrop = (acceptedFiles) => {
-    // Aquí puedes realizar cualquier validación adicional antes de establecer la imagen
-    const file = acceptedFiles[0];
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
     setImageFile(file);
+    console.log(file)
   };
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: 'image/*',
-    multiple: false,
-  });
+  const handleFileChange2 = (e) => {
+    const file = e.target.files[0];
+    setImageFile2(file);
+    console.log(file)
+  };
 
-  const uploadImageToServer = () => {
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append('profileImage', imageFile); // 'profileImage' es el nombre del campo en el servidor
-        console.log(imageFile.path)
-     
-    }
+  const uploadImageToServer = (e) => {
+    e.preventDefault()
+
+    const formData = new FormData()
+
+    formData.append('fotoPerfilUrl', imageFile)
+    formData.append('fotoPortadaUrl', imageFile2)
+      
+      axios
+        .post(`${APIHOST}usuarios/actualizar-foto-perfil/${idUsuario}`, formData)
+        .then((response) => {
+          if (response.data.exito) {
+            // Manejar la respuesta exitosa
+            setMensajeExito('Imagen subida correctamente')
+           
+          } else {
+            // Manejar la respuesta fallida
+            console.log('Error al subir la imagen:', response.data);
+          }
+        })
+        .catch((error) => {
+          console.log('Error al subir la imagen:', error.message);
+        });
+    
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', width: '80vw', height: 'fit-content', padding: '2rem', margin: '0 auto' }}>
-      <Button style={{ width: '2rem', gap: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }} variant="contained" color="primary" onClick={uploadImageToServer}>
-        Subir Imagen
-      </Button>
 
-      <Paper elevation={1} {...getRootProps()} style={{ flex: '1' }}>
-        <div style={{ display: 'flex', width: '80%', maxWidth: '100%', margin: '0 auto', flexDirection: 'column', gap: '1rem' }}>
-          <Typography variant='h4'>Configuración del perfil</Typography>
-          <Typography variant='h5'>Actualizar la foto de perfil</Typography>
-          <Typography variant='p'> <strong>1. Click en el círculo para subir la foto</strong> </Typography>
+   
 
-          <input style={{ width: 480, height: 480 }} {...getInputProps()} />
+    <Container maxWidth='md'>
 
-          <div >
-            {imageFile ? (
-              <Avatar src={URL.createObjectURL(imageFile)} alt="Profile Image" sx={{ width: 260, height: 260 }} />
-            ) : (
-              <Avatar sx={{ width: 260, height: 260, marginTop: '2rem' }}>
-                <CloudUploadIcon />
-              </Avatar>
-            )}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', marginBottom: '2rem' }}>
-            <KeyboardBackspaceIcon />
-            <Typography variant='p'> <strong> 2. Click en subir imagen</strong></Typography>
-          </div>
+      <Grid container>
 
-          <Typography variant='h5'> {userId} </Typography>
-        </div>
-      </Paper>
-      <Paper elevation={1} style={{ width: '20rem', backgroundColor: 'lightblue' }}>
-        <Typography></Typography>
-      </Paper>
-    </div>
+        <Grid xs={12}>
+
+         
+
+        </Grid>
+
+        <Grid xs={12}>
+
+      </Grid>
+
+      </Grid>
+
+    </Container>
+  
   );
 };
 
 export default UploadImage;
+
+
+
+// <div
+// style={{
+//   display: 'flex',
+//   flexWrap: 'wrap',
+//   flexDirection: 'row',
+//   width: '80vw',
+//   height: 'fit-content',
+//   padding: '2rem',
+//   margin: '0 auto',
+// }}
+// >
+// {mensajeExito && <Alert severity="success"> {mensajeExito} </Alert>} 
+
+// <form onSubmit={uploadImageToServer}>
+//   <input type="file"
+//   id='file'
+
+//   onChange={handleFileChange}
+  
+//   />
+
+// <input type="file"
+// id='file2'
+
+// onChange={handleFileChange2}
+
+// />
+
+
+// <Button type="submit" variant="contained" color="primary">
+//   Enviar
+// </Button>
+// </form>
+
+// </div>

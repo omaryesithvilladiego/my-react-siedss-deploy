@@ -80,6 +80,7 @@ function PonenciaFormulario() {
   const handleFile1Change = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
+    console.log(file)
   };
 
   const handleImageChange = (e) => {
@@ -196,6 +197,7 @@ function PonenciaFormulario() {
       .then((response) => {
         setExito(response.data.exito)
         setLoaderPonencia(false)
+        console.log(response.data.exito)
 
         // Limpiar los campos después del envío exitoso
         setNombrePonencia('');

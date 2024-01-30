@@ -11,6 +11,9 @@ import LandingSiedss from "../pages/landing-page/LandingSiedss";
 import Landing from "../pages/landing-page/LandingSiedss";
 import ChangePassword from "../miniComponents/ChangePassword";
 import FourDigitCodeInput from "../miniComponents/ConfirmCode";
+import HorizontalNonLinearStepper from "../components/registroForm/pruebaRegistro";
+import LeadershipForm from "../components/formularios/RegistroSemilleroForm";
+import LandingPage from "../pages/alternative-landing/LandingPageAlt";
 
 function Router() {
     return (
@@ -19,10 +22,12 @@ function Router() {
 
             <Switch>
 
-                <Route exact path='/' component={Landing} />
+                <Route exact path='/' component={LandingSiedss} />
                 <Route exact path='/olvidaste-contraseña' component={ChangePassword} />
                 <Route exact path='/confirmar-code' component={FourDigitCodeInput} />
+                <Route exact path='/test' component={LandingPage} />
                 <PrivateRouter path="/inicio" component={Inicio} />
+                <Route path="/formulario-semillero" component={LeadershipForm} ></Route>
 
 
                 <PrivateRouter path="/curriculum" component={Curriculum} />
