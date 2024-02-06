@@ -17,7 +17,7 @@ const LoginPrivado = ({ component: Component, ...rest }) => {
           cockieAdmin ?  <Redirect to={{ pathname: '/admin', state: { from: props.location } }} />
 :
 
-          <Redirect to={{ pathname: '/inicio', state: { from: props.location } }} />
+          <Redirect to={{ pathname: '/inicio/principal', state: { from: props.location } }} />
         ) : (
           <Component {...props} />
         )

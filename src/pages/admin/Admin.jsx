@@ -61,8 +61,19 @@ const dataMenu = [
 
 export default function UnstyledTabsIntroduction() {
   return (
-    <div >
-         <Paper elevation={0} style={{width:'100%', height:'6rem',display:'flex',  justifyContent:'space-around',fontSize:'.9rem', fontWeight:'bold', justifyContents:'center', alignItems:'center', backgroundColor:'#f9e9ff74', borderRadius:'0px'}} >
+
+    <Grid container>
+
+      <Grid xs={2}>
+        <Paper elevation={2} sx={{width:'6rem', height:'100vh'}}>
+
+        </Paper>
+
+      </Grid>
+
+      
+    <Grid xs={8}>
+         <Paper elevation={0} style={{width:'100%', height:'6rem',display:'flex',  justifyContent:'space-around',fontSize:'.9rem', fontWeight:'bold', justifyContents:'center', alignItems:'center',  borderRadius:'0px'}} >
 
 
 
@@ -125,27 +136,34 @@ export default function UnstyledTabsIntroduction() {
 
 </Paper >
 
-    <Tabs style={{ backgroundColor:'#f9e9ff74', height:'100vh'}}  className={styles.containerPages} defaultValue={0}>
+    <Tabs style={{  height:'100vh'}}  className={styles.containerPages} defaultValue={0}>
    
      
 
-      <TabsList sx={{width:'70%', margin:'0 auto',  backgroundColor:'#DAFFEF', borderRadius:'50px'}} >
+      <TabsList sx={{width:'89%', margin:'0 auto',  backgroundColor:'#e6af2e75', borderRadius:'19px'}} >
 
       {dataMenu.map((item) => {
         return (
-        <Tab sx={{height:'3rem', display:'flex', alignItems:'center'}} value={item.id} key={item.id}>
+        <Tab sx={{height:'2.5rem', display:'flex', alignItems:'center'}} value={item.id} key={item.id}>
           {item.text}
         </Tab>)
       })}
       </TabsList>
 
+      <div style={{marginTop:'5rem'}}>
       <TabPanel value={0}> <InicioAdmin /> </TabPanel>
       <TabPanel value={1}><EstudiantesPageAdmin /></TabPanel>
       <TabPanel value={2}> <Actividades /> </TabPanel>
       <TabPanel value={3}> <EstudiantesAsistencia /> </TabPanel>
+      </div>
+    
 
     </Tabs>
-    </div>
+    </Grid>
+
+
+
+    </Grid>
   );
 }
 
@@ -186,7 +204,7 @@ const Tab = styled(BaseTab)`
   padding: 10px 12px;
   margin: 6px;
   border: none;
-  border-radius: 50px;
+  border-radius: 19px;
   display: flex;
   justify-content: center;
 

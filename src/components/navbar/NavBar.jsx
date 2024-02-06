@@ -109,6 +109,7 @@ export default function PrimarySearchAppBar() {
       
       if(dataUser) {
         setFotoPerfil(dataUser.data.fotoPerfilUrl)
+        console.log(dataUser.dataEstudiante)
       }
   },[dataUser]);
   
@@ -440,7 +441,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 2, }}>
-      <AppBar className={styleCss.appBar} style={{  color:'white', boxShadow:'none', height:'60vh', display:'flex', flexDirection:'column', }} position="static">
+      <AppBar className={styleCss.appBar} style={{  color:'white', boxShadow:'none', height:'40vh', display:'flex', flexDirection:'column', }} position="static">
         <Toolbar>
 
 

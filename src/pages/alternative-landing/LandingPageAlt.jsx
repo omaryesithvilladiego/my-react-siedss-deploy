@@ -230,7 +230,7 @@ function LandingPage() {
                   potenciación de tu Semillero. ¡Conviértete en un referente
                   académico!
                 </Typography>
-                <Link to='/formulario-semillero'>
+                <Link to='/verificar-correo'>
                 <Button
                   variant="contained"
                   color="primary"
@@ -261,7 +261,6 @@ function LandingPage() {
               xs={12}
               sm={12}
               md={6}
-              onMouseEnter={() => handleMouseEnter("#0f1d2a")}
               onMouseLeave={handleMouseLeave}
             >
               <Paper
@@ -306,10 +305,10 @@ function LandingPage() {
                     lineHeight: "1.5",
                   }}
                 >
-                 <strong>Si eres estudiante</strong> participa en eventos académicos y gana puntos que podrás
+                 <strong>Si eres estudiante</strong> y te encuentras en un <strong>semillero de investigación</strong> registrado con nosotros podrás participar en eventos académicos y ganar puntos que podrás
                   canjear por increíbles recompensas y descuentos exclusivos.
                 </Typography>
-                <Link to='/'>
+                <Link to='/landing-student'>
                 <Button
                   variant="contained"
                   style={{ fontSize: "18px", padding: "15px 30px" , backgroundColor:'#2D3142', color:'white'}}

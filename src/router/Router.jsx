@@ -14,6 +14,9 @@ import FourDigitCodeInput from "../miniComponents/ConfirmCode";
 import HorizontalNonLinearStepper from "../components/registroForm/pruebaRegistro";
 import LeadershipForm from "../components/formularios/RegistroSemilleroForm";
 import LandingPage from "../pages/alternative-landing/LandingPageAlt";
+import SemilleroForm from "../pages/CreateSemillero";
+import EnviarCorreo from "../pages/VerificarCorreo";
+import VerificationForm from "../pages/CodigoConfirmacionSemillero";
 
 function Router() {
     return (
@@ -22,10 +25,14 @@ function Router() {
 
             <Switch>
 
-                <Route exact path='/' component={LandingSiedss} />
+                <Route exact path='/landing-student' component={LandingSiedss} />
                 <Route exact path='/olvidaste-contraseña' component={ChangePassword} />
                 <Route exact path='/confirmar-code' component={FourDigitCodeInput} />
-                <Route exact path='/test' component={LandingPage} />
+                <Route exact path='/verificar-correo' component={EnviarCorreo} />
+                <Route exact path='/codigo-confirmacion-usuario' component={VerificationForm} />
+                <Route exact path='/' component={LandingPage} />
+                <Route exact path='/create-semillero' component={SemilleroForm} />
+             
                 <PrivateRouter path="/inicio" component={Inicio} />
                 <Route path="/formulario-semillero" component={LeadershipForm} ></Route>
 

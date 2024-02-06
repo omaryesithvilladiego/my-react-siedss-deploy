@@ -12,7 +12,7 @@ const AdminAuth = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         checkAuth() ? (
-          <Redirect to={{ pathname: '/inicio', state: { from: props.location } }} />
+          <Redirect to={{ pathname: '/inicio/principal', state: { from: props.location } }} />
         ) : (
           <Component {...props} />
         )

@@ -14,6 +14,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Button } from "@mui/material";
 import AlertDialog from "../alertas/AlertaEstudiantes";
 import RefreshIcon from '@mui/icons-material/Refresh';
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 function EstudiantesPageAdmin() {
   const [rows, setRows] = useState([]);
@@ -174,8 +175,11 @@ function EstudiantesPageAdmin() {
       
 
 
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+<Grid container>
+<Grid sx={{ minWidth: 650, backgroundColor:'black'}}>
+  
+  <TableContainer component={Paper}>
+            <Table  aria-label="simple table">
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
@@ -201,6 +205,12 @@ function EstudiantesPageAdmin() {
               </TableBody>
             </Table>
           </TableContainer>
+
+  </Grid>
+
+</Grid>
+
+       
          
         </div>
     );

@@ -101,7 +101,7 @@ export function cerrarSesion() {
     cookies.remove("_m", { path: "/" });
     cookies.remove("_a", { path: "/" });
         // Vaciar el localStorage
-  localStorage.clear()
+  localStorage.removeItem("user")
 
     // Redirige a la página de inicio de sesión o a la página principal
     window.location.href = "/inicio";
