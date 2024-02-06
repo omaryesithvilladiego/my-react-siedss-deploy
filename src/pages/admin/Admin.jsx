@@ -62,17 +62,11 @@ const dataMenu = [
 export default function UnstyledTabsIntroduction() {
   return (
 
-    <Grid container>
+   
 
-      <Grid xs={2}>
-        <Paper elevation={2} sx={{width:'6rem', height:'100vh'}}>
-
-        </Paper>
-
-      </Grid>
-
+     
       
-    <Grid xs={8}>
+    <div >
          <Paper elevation={0} style={{width:'100%', height:'6rem',display:'flex',  justifyContent:'space-around',fontSize:'.9rem', fontWeight:'bold', justifyContents:'center', alignItems:'center',  borderRadius:'0px'}} >
 
 
@@ -159,11 +153,10 @@ export default function UnstyledTabsIntroduction() {
     
 
     </Tabs>
-    </Grid>
+    </div>
 
 
 
-    </Grid>
   );
 }
 
