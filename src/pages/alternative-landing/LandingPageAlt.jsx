@@ -38,6 +38,7 @@ import {
   Weekend as WeekendIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Stack } from "@mui/system";
 
 function LandingPage() {
   const [loading, setLoading] = useState(true);
@@ -171,7 +172,7 @@ function LandingPage() {
                   color: "#FFFFFF",
                 }}
               >
-                🎉 ¡Inscríbete ahora y obtén una membresía gratuita por 7 días!
+                
                 🚀 Descubre todas las ventajas que te ofrecemos.
                 🏆 Participa en eventos académicos y gana increíbles recompensas.
               </Typography>
@@ -204,6 +205,9 @@ function LandingPage() {
                   },
                 }}
               >
+                <Stack spacing={5} direction="row" style={{ color: 'white', marginBottom:'4rem' }}>
+                    <h1>Semillerosnet.com</h1>
+                </Stack>
                 <StarIcon style={{ fontSize: "40px", marginBottom: "10px" }} />
                 <Typography
                   variant={isMobile ? "h5" : "h4"}
@@ -243,7 +247,7 @@ function LandingPage() {
                 <CardGiftcardIcon
                   style={{ fontSize: "40px", marginTop: "20px" }}
                 />
-                <Typography
+                {/* <Typography
                   variant="caption"
                   style={{
                     fontFamily: "Arial, sans-serif",
@@ -252,7 +256,7 @@ function LandingPage() {
                   }}
                 >
                   ¡Inscríbete ahora y obtén una membresía gratuita por 7 días!
-                </Typography>
+                </Typography> */}
               </Paper>
             </Grid>
 
@@ -281,6 +285,9 @@ function LandingPage() {
                   },
                 }}
               >
+                 <Stack spacing={5} direction="row" style={{ color: 'white', marginBottom:'4rem' }}>
+                    <h1>Semillerosnet.com</h1>
+                </Stack>
                 <MonetizationOnIcon
                   style={{ fontSize: "40px", marginBottom: "10px" }}
                 />

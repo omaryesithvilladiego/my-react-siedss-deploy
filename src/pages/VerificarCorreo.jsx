@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, TextField, Button, Typography, Snackbar,Container, CircularProgress, Slide, TextareaAutosize } from '@mui/material';
+import { Paper, TextField, Button, Typography, Snackbar,Container, CircularProgress, Slide, TextareaAutosize, FormControl, Input, InputLabel } from '@mui/material';
 import { MailOutline, CheckCircleOutline, ArrowForward } from '@mui/icons-material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import Alert from '@mui/material/Alert';
@@ -19,9 +19,20 @@ const EnviarCorreo = () => {
   const [openAlertDigits, setOpenAlertDigits] = useState(false)
   const [isSend, setIsSend] = useState(false);
   const [response, setResponse] = useState(false);
+
+
   const [alertCorreoRegistrado, setAlertCorreoRegistrado] = useState(false)
+  const [textAlertCorreoRegistrado, setTextAliertCorreoRegistrado] = useState('')
+  const [correoVerificado, setCorreoVerificado] = useState(false)
+
+
   const [openAlertIncorrectDigits, setOpenAlertIncorrecDigits] = useState(false)
+
+
   const [showFormSemillero, setShowFormSemillero] = useState(false)
+
+
+
   const [semilleroData, setSemilleroData] = useState({
     nombreSemillero: '',
     ciudadSemillero: '',
@@ -105,14 +116,25 @@ const EnviarCorreo = () => {
   };
 
   const handleContinuar = () => {
-    setIsSend(false)
-    setResponse(true)
-    setAlertCorreoRegistrado(false)
-    axios.post(`${APIHOST}auth/reenviar-code`, {
+
+    if(correoVerificado) {
+      setShowFormSemillero(true)
+      setIsSend(false)
+      setResponse(true)
+      setAlertCorreoRegistrado(false)
+    
+    } else {
+      axios.post(`${APIHOST}auth/reenviar-code`, {
         correoElectronico: correoJefeSemillero
     }).then(response => {
         console.log(response.data)
     }).catch((err) => {console.log(err)})
+    setIsSend(false)
+    setResponse(true)
+    setAlertCorreoRegistrado(false)
+    }
+   
+   
   }
 
  
@@ -169,7 +191,12 @@ const EnviarCorreo = () => {
       }).then(response => {
         setIsSend(false);
         setResponse(response.data.status);
+        setTextAliertCorreoRegistrado(response.data.msg)
         setAlertCorreoRegistrado(response.data.procesoRegistro)
+        if(response.data.correoVerificado) {
+        setCorreoVerificado(response.data.correoVerificado)
+        }
+        
         setIsSend(response.data.procesoRegistro)
             console.log(response)
            if(response.data.status) {
@@ -257,7 +284,7 @@ const EnviarCorreo = () => {
              
            }
          >
-           El correo ya tiene un proceso iniciado, ¿Deseas recibir el código otra vez?
+          {textAlertCorreoRegistrado}  
          </Alert>
        </Snackbar>
       }
@@ -345,7 +372,7 @@ const EnviarCorreo = () => {
         }}
       >
         <Typography>Llena los datos del semillero a registrar</Typography>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitSemillero}>
           <TextField
             label="Nombre del Semillero"
             variant="outlined"
@@ -354,7 +381,7 @@ const EnviarCorreo = () => {
             required
             name="nombreSemillero"
             value={semilleroData.nombreSemillero}
-            onChange={handleChange}
+            onChange={handleChangeSemillero}
             InputProps={{
               startAdornment: (
                 <AccountCircleIcon sx={{ color: 'action.active', mr: 1 }} />
@@ -369,7 +396,7 @@ const EnviarCorreo = () => {
             required
             name="ciudadSemillero"
             value={semilleroData.ciudadSemillero}
-            onChange={handleChange}
+            onChange={handleChangeSemillero}
             InputProps={{
               startAdornment: (
                 <LocationOnIcon sx={{ color: 'action.active', mr: 1 }} />
@@ -384,7 +411,7 @@ const EnviarCorreo = () => {
             required
             name="paisSemillero"
             value={semilleroData.paisSemillero}
-            onChange={handleChange}
+            onChange={handleChangeSemillero}
             InputProps={{
               startAdornment: (
                 <PublicIcon sx={{ color: 'action.active', mr: 1 }} />
@@ -399,46 +426,48 @@ const EnviarCorreo = () => {
             required
             name="jefeSemillero"
             value={semilleroData.jefeSemillero}
-            onChange={handleChange}
+            onChange={handleChangeSemillero}
             InputProps={{
               startAdornment: (
                 <SupervisorAccountIcon sx={{ color: 'action.active', mr: 1 }} />
               ),
             }}
           />
-           <TextField
-            label="Identificacion del jefe de semillero"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            name="jefeSemillero"
-            value={semilleroData.jefeSemillero}
-            onChange={handleChange}
-            InputProps={{
-              startAdornment: (
-                <SupervisorAccountIcon sx={{ color: 'action.active', mr: 1 }} />
-              ),
-            }}
-          />
-         <Textarea
-  color="neutral"
-  minRows={2}
-  size="lg"
-  variant="soft"
-  placeholder='Misión del semillero'
-  value={semilleroData.misionSemillero}
-/>
-
-<Textarea
-  color="neutral"
-  minRows={2}
-  size="lg"
-  variant="soft"
-  sx={{marginTop:'2rem', marginBottom:'2rem'}}
-  placeholder='Visión del semillero'
-  value={semilleroData.visionSemillero}
-/>
+            
+     
+      <FormControl fullWidth margin="normal" variant="outlined" required>
+        <InputLabel htmlFor="identificacionJefeSemillero">Identificacion del jefe de semillero</InputLabel>
+        <Input
+          id="identificacionJefeSemillero"
+          type="number"
+          onChange={handleChangeSemillero}
+          startAdornment={<SupervisorAccountIcon sx={{ color: 'action.active', mr: 1 }} />}
+          // Estilos adicionales si es necesario
+        />
+      </FormControl>
+      
+    
+      <Textarea
+        color="neutral"
+        onChange={handleChangeSemillero}
+        minRows={2}
+        size="lg"
+        name='misionSemillero'
+        variant="soft"
+        placeholder='Misión del semillero'
+        value={semilleroData.misionSemillero}
+      />
+      <Textarea
+        color="neutral"
+        minRows={2}
+        onChange={handleChangeSemillero}
+        size="lg"
+        name='visionSemillero'
+        variant="soft"
+        value={semilleroData.visionSemillero}
+        sx={{ marginTop: '2rem', marginBottom: '2rem' }}
+        placeholder='Visión del semillero'
+      />
          
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Enviar
@@ -477,6 +506,7 @@ import AndroidIcon from '@mui/icons-material/Android';
 import CableIcon from '@mui/icons-material/Cable';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ElectricMopedIcon from '@mui/icons-material/ElectricMoped';
+import { NumberInput } from '@mui/base/Unstable_NumberInput/NumberInput';
 
 
 

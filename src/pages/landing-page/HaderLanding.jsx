@@ -50,7 +50,7 @@ function HeaderLanding() {
             }}>
 
                 <Stack spacing={2} direction="row" style={{ color: 'white' }}>
-                    <h1>SIEDSS</h1>
+                    <h1>Semillerosnet.com</h1>
                 </Stack>
 
 
