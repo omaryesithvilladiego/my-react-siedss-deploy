@@ -75,7 +75,7 @@ function HeaderLanding() {
                 <Paper className={style.containerTituloPrincipal} elevation={0} style={{ width: '72vw', height: '40rem', backgroundColor: 'transparent', color: 'white'}} >
 
                     <h2 className={style.tittle} style={{ textJustify: '1rem', display: 'flex', gap: '1rem', flexDirection: 'column' }}> <span > ¡Gestiona tu Éxito Académico!</span> <br />  Administra Ponencias, Cursos y Más con la Potente Aplicación del Semillero de Investigación 🌱💡</h2>
-                    <Button style={{ width: 'fit-content', fontSize: '1.4rem' }} variant='contained'>Empieza Gratis 👌</Button>
+                    <Button style={{ width: 'fit-content', fontSize: '1.4rem' }} variant='contained'>Empieza <Ahora></Ahora>👌</Button>
 
 
                 </Paper>

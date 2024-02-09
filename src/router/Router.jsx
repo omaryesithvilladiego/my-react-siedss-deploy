@@ -32,19 +32,10 @@ function Router() {
                 <Route exact path='/codigo-confirmacion-usuario' component={VerificationForm} />
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/create-semillero' component={SemilleroForm} />
-             
                 <PrivateRouter path="/inicio" component={Inicio} />
                 <Route path="/formulario-semillero" component={LeadershipForm} ></Route>
-
-
                 <PrivateRouter path="/curriculum" component={Curriculum} />
-
-
-
-
                 <LoginPrivado path="/login" component={RegistroFormulario} />
-
-
                 <AdminAuth path="/admin" component={Admin} />
 
 

@@ -178,9 +178,9 @@ function PonenciaFormulario() {
       setFormularioValido(false);
       return; // No envíes la solicitud si hay errores
     }
-
+  
     const formData = new FormData()
-
+    console.log(idUsuario)
     formData.append('nombreEventoPonencia', nombrePonencia)
     formData.append("modalidadEventoPonencia", modalidad)
     formData.append("paisEventoPonencia", pais)

@@ -22,6 +22,11 @@ const dataRanking = [
     id: 2,
     nombre: 'Melissa Andrea',
     ranking: 123
+  },
+  {
+    id: 3,
+    nombre: 'Melissa Andrea',
+    ranking: 123
   }
 ]
 
