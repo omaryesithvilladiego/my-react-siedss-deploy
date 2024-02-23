@@ -17,6 +17,7 @@ import LandingPage from "../pages/alternative-landing/LandingPageAlt";
 import SemilleroForm from "../pages/CreateSemillero";
 import EnviarCorreo from "../pages/VerificarCorreo";
 import VerificationForm from "../pages/CodigoConfirmacionSemillero";
+import RegistroEstudiantes from "../components/RegistroeEstudiante/RegistroEstudiante";
 
 function Router() {
     return (
@@ -34,6 +35,7 @@ function Router() {
                 <Route exact path='/create-semillero' component={SemilleroForm} />
                 <PrivateRouter path="/inicio" component={Inicio} />
                 <Route path="/formulario-semillero" component={LeadershipForm} ></Route>
+                <Route path="/registro-estudiante" component={RegistroEstudiantes} ></Route>
                 <PrivateRouter path="/curriculum" component={Curriculum} />
                 <LoginPrivado path="/login" component={RegistroFormulario} />
                 <AdminAuth path="/admin" component={Admin} />

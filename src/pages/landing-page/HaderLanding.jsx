@@ -55,8 +55,8 @@ function HeaderLanding() {
 
 
                 <Box className={style.menuBar}  style={{ color: 'white' }}>
-                    <Button style={{ color: 'white' }} variant="text"> <Link to='/login'>Iniciar Sesión</Link> </Button>
-                    <Button style={{ color: 'white', border: '1px solid white' }} variant="outlined">Crear Cuenta</Button>
+                    <Button style={{ color: 'white' }} variant="text"> <Link to='/registro-estudiante'>Iniciar Sesión</Link> </Button>
+                <Link to='/registro-estudiante'>  <Button style={{ color: 'white', border: '1px solid white' }} variant="outlined">Crear Cuenta</Button></Link>  
                 </Box>
 
                 <Box className={style.menuBarMovil}   >
@@ -75,7 +75,7 @@ function HeaderLanding() {
                 <Paper className={style.containerTituloPrincipal} elevation={0} style={{ width: '72vw', height: '40rem', backgroundColor: 'transparent', color: 'white'}} >
 
                     <h2 className={style.tittle} style={{ textJustify: '1rem', display: 'flex', gap: '1rem', flexDirection: 'column' }}> <span > ¡Gestiona tu Éxito Académico!</span> <br />  Administra Ponencias, Cursos y Más con la Potente Aplicación del Semillero de Investigación 🌱💡</h2>
-                    <Button style={{ width: 'fit-content', fontSize: '1.4rem' }} variant='contained'>Empieza <Ahora></Ahora>👌</Button>
+                    <Button style={{ width: 'fit-content', fontSize: '1.4rem' }} variant='contained'>Empieza Ahora👌</Button>
 
 
                 </Paper>

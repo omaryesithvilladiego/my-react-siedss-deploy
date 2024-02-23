@@ -80,7 +80,7 @@ function PonenciaFormulario() {
   const handleFile1Change = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
-    console.log(file)
+    
   };
 
   const handleImageChange = (e) => {
@@ -180,7 +180,8 @@ function PonenciaFormulario() {
     }
   
     const formData = new FormData()
-    console.log(idUsuario)
+    console.log(idUsuario.dataEstudiante._id)
+    formData.append('prueba','Esto es una prueba')
     formData.append('nombreEventoPonencia', nombrePonencia)
     formData.append("modalidadEventoPonencia", modalidad)
     formData.append("paisEventoPonencia", pais)
@@ -189,7 +190,7 @@ function PonenciaFormulario() {
     formData.append('posterEventoUrlPonencia', selectedFile2)
     formData.append('presentacionEventoUrlPonencia', selectedFile3)
     formData.append('imagenMemoriasUrlPonencia', selectedFile4)
-    formData.append('idEstudiantePonencia', idUsuario)
+    formData.append('idEstudiantePonencia', idUsuario.dataEstudiante._id)
     formData.append('fechaPonencia', fechaPonencia)
     setLoaderPonencia(true)
     
@@ -197,8 +198,7 @@ function PonenciaFormulario() {
       .then((response) => {
         setExito(response.data.exito)
         setLoaderPonencia(false)
-        console.log(response.data.exito)
-
+       
         // Limpiar los campos después del envío exitoso
         setNombrePonencia('');
         setModalidad('');

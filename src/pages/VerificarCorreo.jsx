@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, TextField, Button, Typography, Snackbar,Container, CircularProgress, Slide, TextareaAutosize, FormControl, Input, InputLabel } from '@mui/material';
-import { MailOutline, CheckCircleOutline, ArrowForward } from '@mui/icons-material';
+import { MailOutline, CheckCircleOutline, ArrowForward, MailOutlineOutlined } from '@mui/icons-material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
@@ -24,10 +24,7 @@ const EnviarCorreo = () => {
   const [alertCorreoRegistrado, setAlertCorreoRegistrado] = useState(false)
   const [textAlertCorreoRegistrado, setTextAliertCorreoRegistrado] = useState('')
   const [correoVerificado, setCorreoVerificado] = useState(false)
-
-
-  const [openAlertIncorrectDigits, setOpenAlertIncorrecDigits] = useState(false)
-
+  const [semilleroAgregado, setSemilleroAgregado] = useState(false)
 
   const [showFormSemillero, setShowFormSemillero] = useState(false)
 
@@ -40,11 +37,12 @@ const EnviarCorreo = () => {
     jefeSemillero: '',
     identificacionJefeSemillero: 0,
     misionSemillero: '',
-    visionSemillero: '',
+    visionSemillero: ''
   });
 
   const handleChangeSemillero = (e) => {
     const { name, value } = e.target;
+    console.log(name + value)
     setSemilleroData({
       ...semilleroData,
       [name]: value,
@@ -53,9 +51,38 @@ const EnviarCorreo = () => {
 
   const handleSubmitSemillero = (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la validación y enviar los datos al backend si es necesario
-    console.log('Datos del semillero:', semilleroData);
+    const correoJefeAuth = localStorage.getItem('emailUser')
+
+      axios.post(`${APIHOST}semillero/guardar-semillero`, 
+{
+  nombreSemillero:semilleroData.nombreSemillero,
+  ciudadSemillero:semilleroData.ciudadSemillero,
+  paisSemillero:semilleroData.paisSemillero,
+  jefeSemillero:semilleroData.jefeSemillero,
+  identificacionJefeSemillero:semilleroData.identificacionJefeSemillero,
+  misionSemillero:semilleroData.misionSemillero,
+  visionSemillero:semilleroData.visionSemillero
+  
+
+},
+      ).then((response) => {
+        console.log(response)
+        if(response.data.exito) {
+          axios.post(`${APIHOST}auth/autenticar-semillero`, {
+            idSemillero:response.data.idSemilleroCreated,
+            emailRegistro:correoJefeAuth
+          }).then((response) => {
+            console.log(response)
+          }).catch((err) => {
+            console.log(err)
+          })
+        }
+      }).catch((err) => {console.log(err)})
+    
+   
   };
+
+
   let  digit2Input, digit3Input, digit4Input;
 
   const [digit1, setDigit1] = useState('');
@@ -120,8 +147,9 @@ const EnviarCorreo = () => {
     if(correoVerificado) {
       setShowFormSemillero(true)
       setIsSend(false)
-      setResponse(true)
+      setResponse(false)
       setAlertCorreoRegistrado(false)
+
     
     } else {
       axios.post(`${APIHOST}auth/reenviar-code`, {
@@ -193,6 +221,7 @@ const EnviarCorreo = () => {
         setResponse(response.data.status);
         setTextAliertCorreoRegistrado(response.data.msg)
         setAlertCorreoRegistrado(response.data.procesoRegistro)
+        setSemilleroAgregado(response.data.semilleroAgregado)
         if(response.data.correoVerificado) {
         setCorreoVerificado(response.data.correoVerificado)
         }
@@ -211,6 +240,8 @@ const EnviarCorreo = () => {
 
   return (
     <div style={{ width: '100vw', height: '100vh', backgroundColor: 'white', display:'flex', flexDirection:'column', justifyContent:'center'}}>
+
+
       {((!response && !isSend && !showFormSemillero) && !alertCorreoRegistrado)  && (
         <Slide direction="down" in={true} mountOnEnter unmountOnExit>
           <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
@@ -265,6 +296,7 @@ const EnviarCorreo = () => {
       )}
 
 
+
       { alertCorreoRegistrado &&
          <Snackbar
          open={alertCorreoRegistrado}
@@ -276,8 +308,8 @@ const EnviarCorreo = () => {
            severity="error"
            sx={{ width: '100%' }}
            action={
-             [<Button key='Continuar'  color="inherit" size="small" onClick={handleContinuar}>
-               Sí
+             [ !semilleroAgregado && <Button key='Continuar'  color="inherit" size="small" onClick={handleContinuar}>
+               Ok
              </Button>,<Button key='Cancelar' color="inherit" size="small" onClick={handleCloseAlertCorreo}>
                close
              </Button>]
@@ -362,6 +394,8 @@ const EnviarCorreo = () => {
         
       )}
 
+
+
       { showFormSemillero && (<Container maxWidth="xs">
       <Box
         sx={{
@@ -433,6 +467,7 @@ const EnviarCorreo = () => {
               ),
             }}
           />
+        
             
      
       <FormControl fullWidth margin="normal" variant="outlined" required>
@@ -440,6 +475,7 @@ const EnviarCorreo = () => {
         <Input
           id="identificacionJefeSemillero"
           type="number"
+          name='identificacionJefeSemillero'
           onChange={handleChangeSemillero}
           startAdornment={<SupervisorAccountIcon sx={{ color: 'action.active', mr: 1 }} />}
           // Estilos adicionales si es necesario
@@ -452,6 +488,8 @@ const EnviarCorreo = () => {
         onChange={handleChangeSemillero}
         minRows={2}
         size="lg"
+        required
+        id='misionSemillero'
         name='misionSemillero'
         variant="soft"
         placeholder='Misión del semillero'
@@ -459,9 +497,11 @@ const EnviarCorreo = () => {
       />
       <Textarea
         color="neutral"
+        id='visionSemillero'
         minRows={2}
         onChange={handleChangeSemillero}
         size="lg"
+        required
         name='visionSemillero'
         variant="soft"
         value={semilleroData.visionSemillero}
